@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Settings Page</title>
+    <!--FontAwesome CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Bootstrap CDN-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!--Sweet Alert CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!--Custom CSS --> 
+    <link rel="stylesheet" href="style/BasicSettings.css">
+</head>
+
+<body>  
+    <div class="wrapper">
+        <!--Start Slide Bar -->
+        <aside id="sidebar">
+            <div class="d-flex">
+                <button class="toggle-btn" type="button">
+                    <i class="fa-solid fa-sliders"></i>
+                </button>
+                <div class="sidebar-logo">
+                    <a href="#" class="h2"> ADMIN </a>
+                </div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-item ">
+                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                    data-bs-target="#settings" aria-expanded="false" aria-controls="settings">
+                    <i class="fa-solid fa-gear"></i>
+                        <span>Settings</span>
+                    </a>
+                    <ul id="settings" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="BasicSettings.html" class="sidebar-link active text-dark">Basic Settings</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="ReservationSettings.html" class="sidebar-link">Reservation Settings</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="fa-solid fa-book"></i>
+                        <span>Department</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>Courses</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="fa-solid fa-circle-check"></i> 
+                         <span>Admission Open</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="fa-solid fa-ribbon"></i>
+                         <span>Application Forms</span>
+                    </a>
+                </li>
+                <div class="sidebar-item">
+                    <a href="#" id="logoutButton" class="sidebar-link">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </ul>
+            
+        </aside>
+        <!--End Slide Bar-->
+        <div class="main ">
+            <!--Start Header-->
+    <div class="header"  style='margin-top: 20px;'>
+        <div class="container-fluid">
+           <div class="row">
+              <div class="col-3 col-xl-2  text-center">
+                    <img src="" alt="logo" width="120px" class="imageHandle li-1" >
+              </div>
+              <div class="col-6 col-xl-8  ">
+                 <div class="text-primary fw-bold responsive-text-PU text-center hl-1"></div>
+                 <div class="fw-bold responsive-text text-center hl-2"></div>
+                 <div class="fw-bold responsive-text text-center hl-3"></div>
+              </div>
+              <div class="col-3 col-xl-2 text-center">
+                 <img src="" alt="periyar" width="120px" class="imageHandle li-2">
+              </div>
+           </div>
+        </div>
+     </div>
+    <!--End Header--> 
+    <hr class="thick-hr  mt-0 mb-0">
+    <!--Start Body Content-->
+    <div class="container-fluid">
+        <div class="h3 fw-bold" style="color: #2C3E50;">Basic Settings</div>
+        <div class="container">
+            <div class="card">
+                <div class="card-header h4">Authority</div>
+                <div class="card-body" style="background-color : rgba(240, 238, 238, 0.89);">
+                   <form id="Authority" class="p-3">
+                    <div class="fw-bold h5">Admission Section</div>
+                    <div class="row p-2 align-items-center">
+                        <div class="col-xxl-2 text-end">
+                            <label for="Department head" class="form-label"> Department Head</label>
+                        </div>
+                        <div class="col-xxl-3 ">
+                            <select name="department-head" class="form-select" id="departmentHead" style="border-radius: 50px;">
+                                <option value="director"></option>
+                                <option value="director">Director</option>
+                                <option value="dean">Dean</option>
+                            </select>
+                        </div>
+                       
+                    </div>
+                       <div class="row align-items-center">
+                        <div class="col-xxl-2 text-end">
+                            <label for="deanName" class="form-label">  Dean Name</label>
+                        </div>
+                        <div class="col-xxl-3">
+                        <input type="text" class="form-control" name="department-head-name" id="departmentHeadName" style="border-radius: 50px;">
+                        </div>
+                        <div class="col-xxl-2 text-end">
+                            <label for="department-head-designation" class="form-label">Designation</label>
+                        </div>
+                        <div class="col-xxl-3">
+                            <select name="department-head-designation" class="form-select" id="departmentHeadDesignation">
+                                <option value="director"></option>
+                                <option value="director">Director</option>
+                                <option value="dean">Dean</option>
+                                <option value="directoric">Director i/c</option>
+                                <option value="deanic">Dean i/c</option>
+                            </select>
+                        
+                        </div>
+                            
+                       </div>
+                       <div class="row">
+                        <div class="fw-bold h5">Registrar Section</div>
+                       </div>
+                       <div class="row">
+                        <div class="col">
+                            <label for="registrarName" class="form-label"> Registrar Name</label>
+                            <input type="text" class="form-control" name="registrar-head-name" id="registrarHeadName">
+                        </div>
+                        <div class="col">
+                            <label for="registrar-designation" class="form-label">Designation</label>
+                            <select name="registrar-designation" class="form-select" id="registrarDesignation">
+                                <option value="registrar">Registrar</option>
+                                <option value="registraric">Registrar i/c</option>
+                            </select>
+                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="fw-bold h5">Vice-Chancellor Section</div>
+                           </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="Vice-ChancellorName" class="form-label"> Vice-Chancellor Name</label>
+                                <input type="text" class="form-control" name="Vice-Chancellor-head-name" id="ViceChancellorHeadName">
+                            </div>
+                            <div class="col">
+                                <label for="Vice-Chancellor-designation" class="form-label">Designation</label>
+                                <select name="Vice-Chancellor-designation" class="form-select" id="ViceChancellorDesignation">
+                                    <option value="ViceChancellor">Vice-Chancellor</option>
+                                    <option value="ViceChancelloric">Vice-Chancellor i/c</option>
+                                </select>
+                            </div>
+                            </div>
+                            <div class="row">
+                                <div class="fw-bold h5">SigningAuthority</div>
+                               </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="Signing-Authority-designation" class="form-label">Designation</label>
+                                    <select name="Signing-Authority-designation" class="form-select" id="SigningAuthorityDesignation">
+                                        <option value="SigningAuthorityDean">Dean</option>
+                                        <option value="SigningAuthorityDirector">Director</option>
+                                        <option value="SigningAuthorityRegistrar">Registrar</option>
+                                        <option value="SigningAuthorityRegistraric">Registrar i/c</option>
+                                        <option value="SigningAuthorityic">Vice-Chancellor</option>
+                                        <option value="SigningAuthority">Vice-Chancellor Offilication Comittee</option>
+
+                                    </select>
+                                </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <button type="button" class="btn btn-primary" id="reset"> Reset </button>
+                                    </div>
+                                    <div class="col">
+                                        <button type="button" class="btn btn-primary" id="save"> Save </button>
+                                    </div>
+                                </div>
+                </form>
+                </div>
+                            
+                        
+            </div>
+            <div class="card">
+                <div class="card-header h4">Header</div>
+                <div class="card-body">
+                    <form id="header">
+                        <div class="fw-bold h5">Header Text Section</div>
+                        <div class="row">
+                            <label for="headLine1" class="form-label"> Head Line 1 </label>
+                            <input type="text" class="form-control HL1" name="headLine1" id="HL1">
+                        </div>
+                        <div class="row">
+                            <label for="headLine2" class="form-label"> Head Line 2 </label>
+                            <input type="text" class="form-control HL2" name="headLine2" id="HL2">
+                        </div>
+                        <div class="row">
+                            <label for="headLine3" class="form-label"> Head Line 3 </label>
+                            <input type="text" class="form-control HL3" name="headLine3" id="HL3">
+                        </div>
+                        <div class="fw-bold h5">Header logo Section</div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="LogoImages" class="form-label">Logo Image </label>
+                            </div>
+                            <div class="col">
+                                <input type="file" class="form-control" id="imageInput1" name="uplodedFile1">
+                            </div>
+                            <div class="col">
+                                <input type="file" class="form-control" id="imageInput2" name="uplodedFile2">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button type="button" class="btn btn-primary" id="reset"> Reset </button>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-primary" id="save"> Save </button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header h4">Email Settings</div>
+                <div class="card-body">
+                    <form id="emailSettings">
+                        <div class="row">
+                            <div class="col">
+                                <label for="emailId" class="form-label"> From Mail ID</label>
+                            </div>
+                            <div class="col">
+                                <input type="email" class="form-control" name="emailId" id="emailId">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="MailSignanture" class="form-label"> Mail Signature</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" name="malSignature" id="mailSignature">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button type="button" class="btn btn-primary" id="reset"> Reset </button>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-primary" id="save"> Save </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    
+    </div>
+    <!--End Body Content-->
+
+        </div>
+    </div>
+    <!--Font Awesome JS CDN-->
+    <script src="https://kit.fontawesome.com/7c2426f918.js" crossorigin="anonymous"></script>
+    <!--Bootstrap JS CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+        <!--JQuery CDN-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!--Custom JS-->
+    <script src="script/BasicSettings.js"></script>
+</body>
+  
+</html>

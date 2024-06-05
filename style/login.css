@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+body {
+  font-family: 'Poppins', sans-serif;
+}
+.responsive-text {
+   font-size: 16px;
+ }
+
+ @media (min-width: 576px) {
+   .responsive-text {
+     font-size: 18px;
+   }
+   .card{
+      margin-top:5px ;
+   }
+ }
+
+ @media (min-width: 768px) {
+   .responsive-text {
+     font-size: 19px;
+   }
+ }
+
+ @media (min-width: 992px) {
+   .responsive-text {
+     font-size: 20px;
+   }
+ }
+
+ @media (min-width: 1200px) {
+   .responsive-text {
+     font-size: 21px;
+   }
+
+   }
+   .custom-input-group .input-group-text {
+      font-size: 1.7rem;
+    }
+    
+    .custom-input {
+      font-size: 1.7rem; 
+      padding: 1.5rem; 
+
+    }
+    .card-3d {
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  .card-3d:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 16px 32px rgba(0, 0, 0, 0.2);
+  }
+  .thick-hr {
+    border: 3px solid #3F576E;
+    outline: none; 
+    opacity: 100;
+  }
+  .swalContainer{
+    top: 25%; 
+  }
+  .swalTitleSuccess{
+    color: green;
+  }
+  .swalTitleError{
+    color:red;
+  }
+  
