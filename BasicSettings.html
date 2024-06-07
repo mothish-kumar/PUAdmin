@@ -21,119 +21,55 @@
     <div class="wrapper">
         <!--Start Slide Bar -->
         <aside id="sidebar">
-            <div class="d-flex">
-                <button class="toggle-btn" type="button">
-                    <i class="fa-solid fa-sliders"></i>
-                </button>
-                <div class="sidebar-logo">
-                    <a href="#" class="h2"> ADMIN </a>
-                </div>
-            </div>
-            <ul class="sidebar-nav">
-                <li class="sidebar-item ">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                    data-bs-target="#settings" aria-expanded="false" aria-controls="settings">
-                    <i class="fa-solid fa-gear"></i>
-                        <span>Settings</span>
-                    </a>
-                    <ul id="settings" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="BasicSettings.html" class="sidebar-link active text-dark">Basic Settings</a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="ReservationSettings.html" class="sidebar-link">Reservation Settings</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="fa-solid fa-book"></i>
-                        <span>Department</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                        <span>Courses</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="fa-solid fa-circle-check"></i> 
-                         <span>Admission Open</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="fa-solid fa-ribbon"></i>
-                         <span>Application Forms</span>
-                    </a>
-                </li>
-                <div class="sidebar-item">
-                    <a href="#" id="logoutButton" class="sidebar-link">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                        <span>Logout</span>
-                    </a>
-                </div>
-            </ul>
-            
         </aside>
         <!--End Slide Bar-->
         <div class="main ">
             <!--Start Header-->
     <div class="header"  style='margin-top: 20px;'>
-        <div class="container-fluid">
-           <div class="row">
-              <div class="col-3 col-xl-2  text-center">
-                    <img src="" alt="logo" width="120px" class="imageHandle li-1" >
-              </div>
-              <div class="col-6 col-xl-8  ">
-                 <div class="text-primary fw-bold responsive-text-PU text-center hl-1"></div>
-                 <div class="fw-bold responsive-text text-center hl-2"></div>
-                 <div class="fw-bold responsive-text text-center hl-3"></div>
-              </div>
-              <div class="col-3 col-xl-2 text-center">
-                 <img src="" alt="periyar" width="120px" class="imageHandle li-2">
-              </div>
-           </div>
+        <div class="container-fluid" id="headerbar">
         </div>
      </div>
     <!--End Header--> 
     <hr class="thick-hr  mt-0 mb-0">
     <!--Start Body Content-->
     <div class="container-fluid">
-        <div class="h3 fw-bold" style="color: #2C3E50;">Basic Settings</div>
+        <div class="h3 fw-bold mt-2" style="color: #2C3E50;">Basic Settings</div>
         <div class="container">
+            <!--Authority Card-->
             <div class="card">
-                <div class="card-header h4">Authority</div>
+                <div class="card-header h4 d-flex justify-content-between align-items-center">Authority
+                    <button  class=" refreshButton btn text-light">
+                        <i class="fas fa-sync-alt"></i> 
+                    </button>
+                </div>
                 <div class="card-body" style="background-color : rgba(240, 238, 238, 0.89);">
                    <form id="Authority" class="p-3">
                     <div class="fw-bold h5">Admission Section</div>
                     <div class="row p-2 align-items-center">
-                        <div class="col-xxl-2 text-end">
-                            <label for="Department head" class="form-label"> Department Head</label>
+                        <div class="col-md-2  text-md-end">
+                            <label class="form-label"> Department Head</label>
                         </div>
-                        <div class="col-xxl-3 ">
-                            <select name="department-head" class="form-select" id="departmentHead" style="border-radius: 50px;">
-                                <option value="director"></option>
+                        <div class="col-md-3 ">
+                            <select name="departmentHead" class="form-select" id="departmentHead" style="border-radius: 50px;">
+                                <option value=""> </option>
                                 <option value="director">Director</option>
                                 <option value="dean">Dean</option>
                             </select>
                         </div>
                        
                     </div>
-                       <div class="row align-items-center">
-                        <div class="col-xxl-2 text-end">
-                            <label for="deanName" class="form-label">  Dean Name</label>
+                       <div class="row align-items-center pt-2">
+                        <div class="col-md-2 text-md-end">
+                            <label  class="form-label">  Dean Name</label>
                         </div>
-                        <div class="col-xxl-3">
-                        <input type="text" class="form-control" name="department-head-name" id="departmentHeadName" style="border-radius: 50px;">
+                        <div class="col-md-3">
+                        <input type="text" class="form-control" name="departmentHeadName" id="departmentHeadName" style="border-radius: 50px;">
                         </div>
-                        <div class="col-xxl-2 text-end">
-                            <label for="department-head-designation" class="form-label">Designation</label>
+                        <div class="col-md-2 text-md-end pt-2 pt-md-0">
+                            <label class="form-label">Designation</label>
                         </div>
-                        <div class="col-xxl-3">
-                            <select name="department-head-designation" class="form-select" id="departmentHeadDesignation">
+                        <div class="col-md-3">
+                            <select name="departmentHeadDesignation" class="form-select" id="departmentHeadDesignation">
                                 <option value="director"></option>
                                 <option value="director">Director</option>
                                 <option value="dean">Dean</option>
@@ -144,45 +80,60 @@
                         </div>
                             
                        </div>
-                       <div class="row">
+                       <div class="row pt-2">
                         <div class="fw-bold h5">Registrar Section</div>
                        </div>
-                       <div class="row">
-                        <div class="col">
-                            <label for="registrarName" class="form-label"> Registrar Name</label>
+                       <div class="row p-2 align-items-center">
+                        <div class="col-md-2 text-md-end">
+                            <label class="form-label"> Registrar Name</label>
+                        </div>
+                        <div class="col-md-3">
                             <input type="text" class="form-control" name="registrar-head-name" id="registrarHeadName">
                         </div>
-                        <div class="col">
-                            <label for="registrar-designation" class="form-label">Designation</label>
+                        <div class="col-md-2 text-md-end pt-2 pt-md-0">
+                            <label  class="form-label">Designation</label>
+                            
+                        </div>
+                        <div class="col-md-3">
                             <select name="registrar-designation" class="form-select" id="registrarDesignation">
+                                <option value=""></option>
                                 <option value="registrar">Registrar</option>
                                 <option value="registraric">Registrar i/c</option>
                             </select>
                         </div>
                         </div>
-                        <div class="row">
+                        <div class="row pt-2">
                             <div class="fw-bold h5">Vice-Chancellor Section</div>
                            </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="Vice-ChancellorName" class="form-label"> Vice-Chancellor Name</label>
-                                <input type="text" class="form-control" name="Vice-Chancellor-head-name" id="ViceChancellorHeadName">
+                        <div class="row p-2 align-items-center">
+                            <div class="col-md-2 text-md-end">
+                                <label class="form-label"> Vice-Chancellor Name</label>
+                                
                             </div>
-                            <div class="col">
-                                <label for="Vice-Chancellor-designation" class="form-label">Designation</label>
-                                <select name="Vice-Chancellor-designation" class="form-select" id="ViceChancellorDesignation">
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" name="ViceChancellorHeadName" id="ViceChancellorHeadName">
+                            </div>
+                            <div class="col-md-2 text-md-end pt-2 pt-md-0">
+                                <label  class="form-label">Designation</label>
+                            </div>
+                            <div class="col-md-3">
+                                <select name="ViceChancellorDesignation" class="form-select" id="ViceChancellorDesignation">
+                                    <option value=""></option>
                                     <option value="ViceChancellor">Vice-Chancellor</option>
                                     <option value="ViceChancelloric">Vice-Chancellor i/c</option>
                                 </select>
                             </div>
                             </div>
-                            <div class="row">
+                            <div class="row pt-2">
                                 <div class="fw-bold h5">SigningAuthority</div>
                                </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label for="Signing-Authority-designation" class="form-label">Designation</label>
-                                    <select name="Signing-Authority-designation" class="form-select" id="SigningAuthorityDesignation">
+                            <div class="row p-2 align-items-center">
+                                <div class="col-md-2 text-md-end">
+                                    <label  class="form-label">Designation</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <select name="SigningAuthorityDesignation" class="form-select" id="SigningAuthorityDesignation">
+                                        <option value=""></option>
                                         <option value="SigningAuthorityDean">Dean</option>
                                         <option value="SigningAuthorityDirector">Director</option>
                                         <option value="SigningAuthorityRegistrar">Registrar</option>
@@ -193,12 +144,10 @@
                                     </select>
                                 </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <button type="button" class="btn btn-primary" id="reset"> Reset </button>
-                                    </div>
-                                    <div class="col">
-                                        <button type="button" class="btn btn-primary" id="save"> Save </button>
+                                <div class="row pt-5">
+                                    <div class="col text-center">
+                                        <button type="button" class="btn btn-primary" id="resetAuth"> Reset </button>
+                                        <button type="button" class="btn btn-success" id="saveAuth"> Save </button>
                                     </div>
                                 </div>
                 </form>
@@ -206,73 +155,106 @@
                             
                         
             </div>
+            <!--Header Card-->
             <div class="card">
-                <div class="card-header h4">Header</div>
-                <div class="card-body">
+                <div class="card-header h4 d-flex justify-content-between align-items-center">Header
+                    <button class="refreshButton btn text-light">
+                        <i class="fas fa-sync-alt"></i> 
+                    </button>
+                </div>
+                <div class="card-body" style="background-color : rgba(240, 238, 238, 0.89);">
                     <form id="header">
-                        <div class="fw-bold h5">Header Text Section</div>
-                        <div class="row">
-                            <label for="headLine1" class="form-label"> Head Line 1 </label>
-                            <input type="text" class="form-control HL1" name="headLine1" id="HL1">
-                        </div>
-                        <div class="row">
-                            <label for="headLine2" class="form-label"> Head Line 2 </label>
-                            <input type="text" class="form-control HL2" name="headLine2" id="HL2">
-                        </div>
-                        <div class="row">
-                            <label for="headLine3" class="form-label"> Head Line 3 </label>
-                            <input type="text" class="form-control HL3" name="headLine3" id="HL3">
-                        </div>
-                        <div class="fw-bold h5">Header logo Section</div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="LogoImages" class="form-label">Logo Image </label>
+                        <div class="fw-bold h5 p-3">Header Text Section</div>
+                        <div class="row p-4 pt-1">
+                            <div class="col-md-2 text-md-end">
+                                <label class="form-label"> Head Line 1 </label>
                             </div>
-                            <div class="col">
-                                <input type="file" class="form-control" id="imageInput1" name="uplodedFile1">
-                            </div>
-                            <div class="col">
-                                <input type="file" class="form-control" id="imageInput2" name="uplodedFile2">
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="headLine1" id="HL1">
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <button type="button" class="btn btn-primary" id="reset"> Reset </button>
+                        <div class="row p-4 pt-1">
+                            <div class="col-md-2 text-md-end">
+                                <label  class="form-label"> Head Line 2 </label>
                             </div>
-                            <div class="col">
-                                <button type="button" class="btn btn-primary" id="save"> Save </button>
+                            <div class="col-md-9">
+                                 <input type="text" class="form-control HL2" name="headLine2" id="HL2">
+                            </div>
+                        </div>
+                        <div class="row p-4 pt-1">
+                            <div class="col-md-2 text-md-end">
+                                <label  class="form-label"> Head Line 3 </label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control HL3" name="headLine3" id="HL3">
+                            </div>
+                        </div>
+                        <div class="fw-bold h5 p-3 pb-0">Header logo Section</div>
+                       <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <img src="" alt="logo1" class="imageHandle" id="LI1">
+                                </div>
+                                <div class="card-footer" style="background-color: #2C3E50; color: #fff;">
+                                    <label for="uploadFile1" >Change</label>
+                                    <input type="file" accept="image/png,image/jpg,image/jpeg" id="uploadFile1" style="display:none;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center rounded">
+                                <div class="card-body">
+                                    <img src="" alt="logo2" class="imageHandle" id="LI2">
+                                </div>
+                                <div class="card-footer" style="background-color: #2C3E50; color: #fff;">
+                                    <label for="uploadFile2" >Change</label>
+                                    <input type="file" accept="image/png,image/jpg,image/jpeg" id="uploadFile2" style="display:none;">
+                                </div>
+                            </div>
+                        </div>
+
+                       </div>
+                        <div class="row pt-5">
+                            <div class="col text-center">
+                                <button type="button" class="btn btn-primary" id="resetHead"> Reset </button>
+                                <button type="button" class="btn btn-success" id="saveHead"> Save </button>
                             </div>
                         </div>
                     </form>
 
                 </div>
             </div>
+            <!--Email Settings Card-->
             <div class="card">
-                <div class="card-header h4">Email Settings</div>
-                <div class="card-body">
-                    <form id="emailSettings">
-                        <div class="row">
-                            <div class="col">
+                <div class="card-header h4 d-flex justify-content-between align-items-center">Email Settings
+                    <button  class=" refreshButton btn text-light">
+                        <i class="fas fa-sync-alt"></i> 
+                    </button>
+                </div>
+                <div class="card-body" style="background-color : rgba(240, 238, 238, 0.89);">
+                    <form id="emailSettings" class="p-3">
+                        <div class="row align-items-center">
+                            <div class="col-md-2 text-md-end">
                                 <label for="emailId" class="form-label"> From Mail ID</label>
                             </div>
-                            <div class="col">
+                            <div class="col-md-3">
                                 <input type="email" class="form-control" name="emailId" id="emailId">
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
+                        <div class="row align-items-center mt-3">
+                            <div class="col-md-2 text-md-end">
                                 <label for="MailSignanture" class="form-label"> Mail Signature</label>
                             </div>
-                            <div class="col">
-                                <input type="text" class="form-control" name="malSignature" id="mailSignature">
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" name="mailSignature" id="mailSignature">
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <button type="button" class="btn btn-primary" id="reset"> Reset </button>
-                            </div>
-                            <div class="col">
-                                <button type="button" class="btn btn-primary" id="save"> Save </button>
+                        <div class="row pt-5">
+                            <div class="col text-center">
+                                <button type="button" class="btn btn-primary" id="resetEmail"> Reset </button>
+                                <button type="button" class="btn btn-success" id="saveEmail"> Save </button>
                             </div>
                         </div>
                     </form>

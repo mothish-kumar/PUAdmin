@@ -1,0 +1,91 @@
+<div class="d-flex">
+   <button class="toggle-btn" type="button">
+       <i class="fa-solid fa-sliders"></i>
+   </button>
+   <div class="sidebar-logo">
+       <a href="#" class="h2"> ADMIN </a>
+   </div>
+</div>
+<ul class="sidebar-nav">
+   <li class="sidebar-item ">
+       <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+       data-bs-target="#settings" aria-expanded="false" aria-controls="settings">
+       <i class="fa-solid fa-gear"></i>
+           <span>Settings</span>
+       </a>
+       <ul id="settings" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+           <li class="sidebar-item">
+               <a href="BasicSettings.html" class="sidebar-link active text-dark">Basic Settings</a>
+           </li>
+           <li class="sidebar-item">
+               <a href="ReservationSettings.html" class="sidebar-link">Reservation Settings</a>
+           </li>
+       </ul>
+   </li>
+   <li class="sidebar-item">
+       <a href="#" class="sidebar-link">
+           <i class="fa-solid fa-book"></i>
+           <span>Department</span>
+       </a>
+   </li>
+   <li class="sidebar-item">
+       <a href="#" class="sidebar-link">
+           <i class="fa-solid fa-graduation-cap"></i>
+           <span>Courses</span>
+       </a>
+   </li>
+   <li class="sidebar-item">
+       <a href="#" class="sidebar-link">
+           <i class="fa-solid fa-circle-check"></i> 
+            <span>Admission Open</span>
+       </a>
+   </li>
+   <li class="sidebar-item">
+       <a href="#" class="sidebar-link">
+           <i class="fa-solid fa-ribbon"></i>
+            <span>Application Forms</span>
+       </a>
+   </li>
+   <div class="sidebar-item">
+       <a href="#" id="logoutButton" class="sidebar-link">
+           <i class="fa-solid fa-right-from-bracket"></i>
+           <span>Logout</span>
+       </a>
+   </div>
+</ul>
+
+<script>
+   //toggle Button Script
+const togglebtn = document.querySelector(".toggle-btn");
+
+togglebtn.addEventListener("click", function () {
+  document.querySelector("#sidebar").classList.toggle("expand");
+});
+//LogOut Script
+$(document).ready(function() {
+  $('#logoutButton').click(function(e) {
+      e.preventDefault(); 
+      // Display a SweetAlert notification
+      Swal.fire({
+          toast: true,
+          icon:null,
+          iconHtml:'<i class="fa-solid fa-circle-info fa-lg" style="color:#2C3E50;"></i>',
+          position:'top-end',
+          title: 'Are you sure you want to log out?',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, logout',
+          confirmButtonColor: '#2C3E50',
+          cancelButtonText: 'Cancel',
+          cancelButtonColor: '#2C3E50',
+          customClass: {
+            popup: 'swalContainer',
+            title: 'swalTitle',
+        },
+      }).then((result) => {
+          if (result.isConfirmed) {
+              window.location.href = 'login.html';
+          }
+      });
+  });
+});
+</script>

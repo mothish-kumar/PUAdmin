@@ -259,6 +259,12 @@ a.sidebar-link:hover {
   color: red;
   font-size: medium;
  }
+ .swalTitleSuccess{
+  color: green;
+}
+.swalTitleError{
+  color:red;
+}
 /* Basic Settings Content*/
 .card-header{
   background: linear-gradient(to right,#405870,#2C3E50);
@@ -266,6 +272,8 @@ a.sidebar-link:hover {
   font-weight: bold;
 
 }
+
+
 .card{
   margin-top: 2rem;
 }

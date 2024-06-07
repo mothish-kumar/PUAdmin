@@ -1,0 +1,36 @@
+<div class="row">
+   <div class="col-3 col-xl-2  text-center">
+         <img src="" alt="logo" width="120px" class="imageHandle li-1" >
+   </div>
+   <div class="col-6 col-xl-8  ">
+      <div class="text-primary fw-bold responsive-text-PU text-center hl-1"></div>
+      <div class="fw-bold responsive-text text-center hl-2"></div>
+      <div class="fw-bold responsive-text text-center hl-3"></div>
+   </div>
+   <div class="col-3 col-xl-2 text-center">
+      <img src="" alt="periyar" width="120px" class="imageHandle li-2">
+   </div>
+</div>
+
+<script>
+    $.ajax({
+      url:'phpScripts/header.php',
+      method:'GET',
+      success:function(responce){
+         var data = JSON.parse(responce);
+         $(document).ready(function(){
+            if (data.success){
+               $('.hl-1').text(data.data.headerLine1);  
+               $('.hl-2').text(data.data.headerLine2); 
+               $('.hl-3').text(data.data.headerLine3);  
+               $('.li-1').attr('src', data.data.logoImage1); 
+               $('.li-2').attr('src', data.data.logoImage2); 
+            }
+         });
+      }
+         ,
+      error: function (xhr, status, error) {
+          console.error('AJAX Error:', status, error);
+      }
+   });
+</script>

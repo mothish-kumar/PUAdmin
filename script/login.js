@@ -1,3 +1,8 @@
+//Load Header.html
+$(function(){
+    $('#headerbar').load('./header.html');
+});
+//login Script
 $(document).ready(function() {
    $('#login_btn').click('submit', function(e) {
       e.preventDefault();
@@ -78,7 +83,7 @@ $(document).ready(function() {
                      title: 'swalTitleSuccess',
                  },
                   didClose: () => {
-                      window.location.href = 'home.html';
+                      window.location.href = 'BasicSettings.html';
                   }
               });
             } else {
