@@ -248,7 +248,6 @@ $(document).ready (function() {
     if ($('#uploadFile2')[0].files[0]) {
         formData.append('logoImage2', $('#uploadFile2')[0].files[0]);
     }
-
     $.ajax({
         url: 'phpScripts/header.php',
         type: 'POST',

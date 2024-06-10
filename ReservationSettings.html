@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Settings Page</title>
+    <!--FontAwesome CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Bootstrap CDN-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!--DatePicker CDN-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <!--Sweet Alert CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!--Custom CSS --> 
+    <link rel="stylesheet" href="style/BasicSettings.css">
+    <link rel="stylesheet" href="style/ReservationSettings.css">
+</head>
+
+<body>  
+    <div class="wrapper">
+        <!--Start Slide Bar -->
+        <aside id="sidebar">
+        </aside>
+        <!--End Slide Bar-->
+        <div class="main ">
+            <!--Start Header-->
+    <div class="header"  style='margin-top: 20px;'>
+        <div class="container-fluid" id="headerbar">
+        </div>
+     </div>
+    <!--End Header--> 
+    <hr class="thick-hr  mt-0 mb-0">
+    <!--Start Body Content-->
+    <div class="container-fluid">
+        <div class="h3 fw-bold mt-2" style="color: #2C3E50;">Reservation Settings</div>
+        <div class="container">
+                <form id="reservationSearch">
+                    <div class="row pt-3 align-items-center">
+                        <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                            <label for="DatePicker" class="form-label  ps-5 fs-6" >Select W.e.f Date</label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="input-group">
+                                <input type="text" name="DatePicker" id="datePicker" class="form-control">
+                                <button type="button" class="btn text-light" style="border-top-right-radius: 50px; border-bottom-right-radius: 50px; background-color: #2C3E50;" id="searchButton"><i class="fa-solid fa-magnifying-glass fa-shake fa-lg"></i></button>
+                            </div>
+                        </div>
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-3 pt-3 d-flex justify-content-evenly">
+                            <button type="button" class="btn btn-success rounded-5 p-xl-2 px-xl-4 fw-bold" data-bs-toggle="modal" data-bs-target="#addModal"><i class="fa-solid fa-plus fa-fade fa-l"></i> Add</button>
+                            <!--pop up container-->
+                            <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addButtonLabel">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header" style="background: linear-gradient(to left,#405870,#2C3E50);">
+                                            <div class="modal-title text-light fw-bold">ADD NEW </div>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body p-4">
+                                            <form id="addForm">
+                                                <label for="community" class="form-label">Community:</label>
+                                                <input type="text" id="community" name="community" class="form-control">
+                                                <label for="reservation" class="form-label">Reservation %:</label>
+                                                <input type="text" id="reservation" name="reservation" class="form-control">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger rounded-5" data-bs-dismiss="modal">Exit</button>
+                                            <button type="button" class="btn btn-primary rounded-5 fw-bold" id="AddButton">Add</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="button" class="btn btn-danger rounded-5 p-2 px-3 fw-bold" id="deleteButton"><i class="fa-solid fa-trash fa-l fa-fade"></i> Remove</button>
+                        </div>
+                    </div>
+                    <div class="row pt-5 align-items-center">
+                        <div class="table-responsive">
+                            <table class="table table-borderless" id="reservationTable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center"> Community</th>
+                                        <th scope="col"  class="text-center">Reservation %</th>
+                                        <th scope="col"> </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col text-center">
+                            <button type="button" class="btn btn-info rounded-5 p-2 px-3 fw-bold d-none" id="save"><i class="fa-solid fa-pencil fa-shake"></i> Update </button>
+                        </div>
+                </form>
+        </div>
+
+    </div>
+    <!--End Body Content-->
+
+        </div>
+    </div>
+    <!--Font Awesome JS CDN-->
+    <script src="https://kit.fontawesome.com/7c2426f918.js" crossorigin="anonymous"></script>
+    <!--Bootstrap JS CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+        <!--JQuery CDN-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!--DatePicker JS CDN-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <!--Custom JS-->
+    <script src="script/BasicSettings.js"></script>
+    <script src="script/ReservationSettings.js"></script>
+</body>
+  
+</html>

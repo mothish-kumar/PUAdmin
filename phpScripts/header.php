@@ -1,11 +1,6 @@
 <?php
 include "config.php";
 
-// Enable error logging
-ini_set('log_errors', 1);
-ini_set('error_log', '/path_to_your_log_file/php-error.log'); // Change this to your actual log file path
-error_reporting(E_ALL);
-ini_set('display_errors', 0); // Disable error display
 
 // Absolute path to the images directory
 $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/PUAdmin/asserts/images/";
@@ -13,7 +8,7 @@ $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/PUAdmin/asserts/images/";
 if (!is_dir($target_dir)) {
     mkdir($target_dir, 0777, true); // Create the directory if it does not exist
 }
-
+ 
 // Function to upload image and return the file path
 function uploadImage($file, $target_dir, $newFileName) {
    $target_file = $target_dir . $newFileName;

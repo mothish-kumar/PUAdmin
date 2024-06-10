@@ -15,7 +15,7 @@
        </a>
        <ul id="settings" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
            <li class="sidebar-item">
-               <a href="BasicSettings.html" class="sidebar-link active text-dark">Basic Settings</a>
+               <a href="BasicSettings.html" class="sidebar-link">Basic Settings</a>
            </li>
            <li class="sidebar-item">
                <a href="ReservationSettings.html" class="sidebar-link">Reservation Settings</a>
@@ -55,6 +55,16 @@
 </ul>
 
 <script>
+    //add class for the active link 
+    $(document).ready(function() {
+        const currentUrl = window.location.href.split('/').pop(); // Get the current file name
+        $('.sidebar-link').each(function(){
+            var hrefValue = $(this).attr('href')
+            if(hrefValue == currentUrl){
+                $(this).addClass('active text-dark');
+            }
+        });
+    });
    //toggle Button Script
 const togglebtn = document.querySelector(".toggle-btn");
 
@@ -88,4 +98,5 @@ $(document).ready(function() {
       });
   });
 });
+
 </script>
