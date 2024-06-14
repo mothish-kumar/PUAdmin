@@ -2,8 +2,6 @@
 $(function() {
    $('#datePicker').datepicker({
       format: 'yyyy-mm-dd',
-      startDate: '-3d',
-      endDate: '+3m',
       autoclose: true,
       todayHighlight: true,
       orientation: 'bottom auto'

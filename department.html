@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Settings Page</title>
+    <!--FontAwesome CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Bootstrap CDN-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!--Sweet Alert CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!--Custom CSS --> 
+    <link rel="stylesheet" href="style/BasicSettings.css">
+</head>
+
+<body>  
+    <div class="wrapper">
+        <!--Start Slide Bar -->
+        <aside id="sidebar">
+        </aside>
+        <!--End Slide Bar-->
+        <div class="main ">
+            <!--Start Header-->
+    <div class="header"  style='margin-top: 20px;'>
+        <div class="container-fluid" id="headerbar">
+        </div>
+     </div>
+    <!--End Header--> 
+    <hr class="thick-hr  mt-0 mb-0">
+    <!--Start Body Content-->
+    <div class="container mt-5">
+      <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+              <h3>Department List</h3>
+              <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">+ Add New</button>
+          </div>
+          <div class="card-body">
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                          <th>Department Name</th>
+                          <th>Department Code</th>
+                          <th>Contact No.</th>
+                          <th>Email</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
+                      </tr>
+                  </thead>
+                  <tbody id="departmentTable">
+                      <!-- Rows will be inserted here by JavaScript -->
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="addModalLabel">Add New Department</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form id="addDept">
+               <div class="modal-body">
+                  <input type="text" id="newName" class="form-control mb-2" placeholder="Department Name">
+                  <input type="text" id="newCode" class="form-control mb-2" placeholder="Department Code">
+                  <input type="text" id="newContact" class="form-control mb-2" placeholder="Contact No.">
+                  <input type="email" id="newEmail" class="form-control mb-2" placeholder="Email">
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" id="addbtn">Add</button>
+              </div>
+              </form>
+          </div>
+      </div>
+  </div>
+    <!--End Body Content-->
+
+        </div>
+    </div>
+    <!--Font Awesome JS CDN-->
+    <script src="https://kit.fontawesome.com/7c2426f918.js" crossorigin="anonymous"></script>
+    <!--Bootstrap JS CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+        <!--JQuery CDN-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!--Custom JS-->
+    <script src="script/BasicSettings.js"></script>
+    <script src="script/department.js"></script>
+</body>
+  
+</html>
