@@ -286,4 +286,18 @@ a.sidebar-link:hover {
 .form-select{
   border-radius: 50px;
 }
+
+/*CSS for Department html file*/
+@media (max-width: 768px) {
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .table-responsive table {
+    width: 100%;
+    min-width: 600px; /* Adjust based on your table's content */
+  }
+}
+
  

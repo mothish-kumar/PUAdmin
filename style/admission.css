@@ -1,0 +1,30 @@
+ /*Notes Page CSS*/
+ .popover-header {
+   background-color: #2C3E50;
+   color: white;
+
+ }
+ .popover-body {
+   background-color: #f3f3f7;
+   color: #f80505;
+ }
+ /*Multiple Selection CSS*/
+ .rounded {
+   border-radius: 50px !important; 
+ }
+ .input{
+      border-radius: 50px !important; 
+ }
+ .item-container{
+   background-color: #2C3E50 !important;
+   color: #f3f3f7 !important;
+   font-weight: bolder !important;
+ }
+ .item-label{
+   color: #f3f3f7 !important;
+ }
+ .btn-container{
+   border: none !important;
+   padding: 6px !important;;
+ }
+
