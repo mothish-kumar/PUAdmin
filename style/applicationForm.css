@@ -1,0 +1,30 @@
+.search-group {
+   background-color: #3b7ddd;
+}
+.search-group .input-group-text {
+   background-color: #3b7ddd;
+   border: none;
+   color: #fff;
+}
+.search-group .form-control {
+   background-color: #3b7ddd;
+   border: none;
+   color: #fff;
+}
+.search-group .form-control::placeholder {
+   color: #fff;
+}
+/* CSS for Paid tag */
+.badge.bg-success {
+   background-color: green;
+    color: white;
+}
+/* CSS for Unpaid tag */
+.badge.bg-danger {
+    background-color: red;
+    color: white;
+}
+/* CSS for action button */
+.action-btn {
+   padding: 5px;
+}

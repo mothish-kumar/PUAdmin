@@ -33,7 +33,7 @@
     <hr class="thick-hr  mt-0 mb-0">
     <!--Start Body Content-->
     <div class="container-fluid">
-        <div class="h3 fw-bold mt-2" style="color: #2C3E50;">Basic Settings</div>
+        
         <div class="container">
             <!--Authority Card-->
             <div class="card">
@@ -167,7 +167,7 @@
                         <div class="fw-bold h5 p-3">Header Text Section</div>
                         <div class="row p-4 pt-1">
                             <div class="col-md-2 text-md-end">
-                                <label class="form-label"> Head Line 1 </label>
+                                <label class="form-label" for="HL1"> Head Line 1 </label>
                             </div>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="headLine1" id="HL1">
@@ -175,7 +175,7 @@
                         </div>
                         <div class="row p-4 pt-1">
                             <div class="col-md-2 text-md-end">
-                                <label  class="form-label"> Head Line 2 </label>
+                                <label  class="form-label" for="HL2"> Head Line 2 </label>
                             </div>
                             <div class="col-md-9">
                                  <input type="text" class="form-control HL2" name="headLine2" id="HL2">
@@ -183,12 +183,16 @@
                         </div>
                         <div class="row p-4 pt-1">
                             <div class="col-md-2 text-md-end">
-                                <label  class="form-label"> Head Line 3 </label>
+                                <label  class="form-label" for="HL3"> Head Line 3 </label>
                             </div>
                             <div class="col-md-9">
                                 <input type="text" class="form-control HL3" name="headLine3" id="HL3">
                             </div>
+                            <div class="col-md-1 text-md-end mt-md-0 mt-2">
+                                <button type="button" class="btn btn-secondary rounded-5" id="addHeadlineBtn"><i class="fa-solid fa-plus fa-lg"></i> </button>
+                            </div>
                         </div>
+                        <div id="additionalHeadlines"></div>
                         <div class="fw-bold h5 p-3 pb-0">Header logo Section</div>
                        <div class="row">
                         <div class="col-md-3"></div>
@@ -216,6 +220,8 @@
                         </div>
 
                        </div>
+                       <!--buttons-->
+                       <div class="row pt-5">
                         <div class="row pt-5">
                             <div class="col text-center">
                                 <button type="button" class="btn btn-primary" id="resetHead"> Reset </button>
@@ -245,7 +251,7 @@
                         </div>
                         <div class="row align-items-center mt-3">
                             <div class="col-md-2 text-md-end">
-                                <label for="MailSignanture" class="form-label"> Mail Signature</label>
+                                <label for="mailSignature" class="form-label"> Mail Signature</label>
                             </div>
                             <div class="col-md-3">
                                 <input type="text" class="form-control" name="mailSignature" id="mailSignature">

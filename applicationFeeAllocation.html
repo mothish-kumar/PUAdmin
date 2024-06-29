@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Fee Allocation Page</title>
+    <!--FontAwesome CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Bootstrap CDN-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!--Sweet Alert CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!--Custom CSS --> 
+    <link rel="stylesheet" href="style/BasicSettings.css">
+</head>
+
+<body>  
+    <div class="wrapper">
+        <!--Start Slide Bar -->
+        <aside id="sidebar">
+        </aside>
+        <!--End Slide Bar-->
+        <div class="main ">
+            <!--Start Header-->
+    <div class="header"  style='margin-top: 20px;'>
+        <div class="container-fluid" id="headerbar">
+        </div>
+     </div>
+    <!--End Header--> 
+    <hr class="thick-hr  mt-0 mb-0">
+    <!--Start Body Content-->
+    <div class="h3 fw-bold mt-2 ms-2" style="color: #2C3E50;">Application Fees Allocation </div>
+    <div class="container mt-2">
+      <div class="row pt-3 align-items-center">
+         <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+             <label for="admissionYear" class="form-label  ps-5 fs-6" >Select Admission</label>
+         </div>
+         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+             <div class="input-group">
+               <select id="admissionYear" class="form-control">
+                  <option value="" selected></option>
+                  <!--Dynamic Options From Database-->
+                </select>
+                 <button type="button" class="btn text-light" style="border-top-right-radius: 50px; border-bottom-right-radius: 50px; background-color: #2C3E50;" id="searchButton"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
+             </div>
+         </div>
+      </div>
+      <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+              <h4 class="fw-bold">Application Fee Allocation</h4>
+              <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">Add New</button>
+          </div>
+          <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Course</th>
+                            <th>OC</th>
+                            <th>BC</th>
+                            <th>BC(Muslim)</th>
+                            <th>DNC</th>
+                            <th>MBC</th>
+                            <th>SC</th>
+                            <th>SC(A)</th>
+                            <th>ST</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="applicationFeeAllocationTable">
+                        <!-- Rows will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+              </div>
+          </div>
+      </div>
+    </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="addModalLabel">Add  New Application Fee Allocation </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form id="addApplicationFee"  enctype="multipart/form-data">
+                <div class="modal-body">
+                     <h5 class="ps-2">Step-1:</h5>
+                     <p class="ps-4">Choose the Admission Year </p>
+                     <select  id="admissionYearOptions" class="rounded-5 px-5 py-1 ms-4 text-center">
+                         <option value="" selected></option>
+                         <!--Options from backend -->
+                     </select>
+                     <h5 class="ps-2 mt-2">Step-2:</h5>
+                     <p class="ps-4">Download the Excel File </p>
+                     <div class="ps-4 pt-1">
+                         <button class="btn rounded-5 px-5 fw-bold" id="downloadExcel" type="button" style="background-color: #2C3E50; color: white;"> <i class="fa fa-download px-1" aria-hidden="true"></i> Download</button>
+                     </div><br>
+                     <h5 class="ps-2 mt-2">Step-3:</h5>
+                     <p class="ps-4">Import the  Updated Excel File </p>
+                     <div class="ps-4 pt-1">
+                        <label for="fileInput" class="btn rounded-5 px-5 fw-bold" style="background-color: #2C3E50; color: white;"><i class="fa fa-upload px-1" aria-hidden="true"></i> Upload</label>
+                        <input type="file" id="fileInput" name="file" style="display: none;">
+                     </div>
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                   <button type="button" class="btn btn-primary" id="addfeebtn">Add</button>
+               </div>
+               </form>
+          </div>
+      </div>
+  </div>
+    <!--End Body Content-->
+
+        </div>
+    </div>
+    <!--Font Awesome JS CDN-->
+    <script src="https://kit.fontawesome.com/7c2426f918.js" crossorigin="anonymous"></script>
+    <!--Bootstrap JS CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+        <!--JQuery CDN-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!--Custom JS-->
+    <script src="script/BasicSettings.js"></script>
+    <script src="script/applicationFeeAllocation.js"></script>
+</body>
+  
+</html>

@@ -41,18 +41,18 @@ $(document).ready(function() {
                      }
                  });
                } else {
-                  Swal.fire({
-                     toast: true,
-                     position: 'top-end',
-                     icon: 'error',
-                     title: res.message,
-                     showConfirmButton: false, 
-                     timerProgressBar: true,
-                     customClass: {
-                         popup: 'swalContainer',
-                         title: 'swalTitleError'
-                     }
-                 });
+                Swal.fire({
+                   toast: true,
+                   position: 'top-end',
+                   icon: 'error',
+                   title: res.message,
+                   showConfirmButton: false, 
+                   timerProgressBar: true,
+                   customClass: {
+                       popup: 'swalContainer',
+                       title: 'swalTitleError'
+                   }
+               });
                }
            },
            error: function(xhr, status, error) {
@@ -214,58 +214,58 @@ function saveRow(button) {
 
 // Delete the data function
 function deleteRow(id) {
-   $.ajax({
-       url: 'phpScripts/delete_department.php',
-       type: 'POST',
-       data: { id: id },
-       success: function(response) {
-           if (response.success) {
-            Swal.fire({
-               toast: true,
-               position: 'top-end',
-               icon: 'success',
-               title: 'Department Deleted Successfully',
-               showConfirmButton: true,
-               confirmButtonText : 'OK',
-               confirmButtonColor: '#2C3E50',
-               timerProgressBar: false,
-               customClass: {
-                   popup: 'swalContainer',
-                   title: 'swalTitleSuccess'
-               }
-           }).then((result) => {
-               if (result.isConfirmed) {
-                   location.reload();
-               }
-           });
-           } else {
-            Swal.fire({
-               toast: true,
-               position: 'top-end',
-               icon: 'error',
-               title: 'Error on Deleting Please Try Again Later',
-               showConfirmButton: false, 
-               timerProgressBar: true,
-               customClass: {
-                   popup: 'swalContainer',
-                   title: 'swalTitleError'
-               }
-           });
-           }
-       },
-       error: function(xhr, status, error) {
-         Swal.fire({
-            toast: true,
-            position: 'top-end',
-            icon: 'error',
-            title: 'Server Busy Now Try Again Later',
-            showConfirmButton: false, 
-            timerProgressBar: true,
-            customClass: {
-                popup: 'swalContainer',
-                title: 'swalTitleError'
+    $.ajax({
+        url: 'phpScripts/delete_department.php',
+        type: 'POST',
+        data: { id: id },
+        success: function(response) {
+            if (response.success) {
+             Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'success',
+                title: 'Department Deleted Successfully',
+                showConfirmButton: true,
+                confirmButtonText : 'OK',
+                confirmButtonColor: '#2C3E50',
+                timerProgressBar: false,
+                customClass: {
+                    popup: 'swalContainer',
+                    title: 'swalTitleSuccess'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload();
+                }
+            });
+            } else {
+             Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'error',
+                title: 'Error on Deleting Please Try Again Later',
+                showConfirmButton: false, 
+                timerProgressBar: true,
+                customClass: {
+                    popup: 'swalContainer',
+                    title: 'swalTitleError'
+                }
+            });
             }
-        });
-       }
-   });
+        },
+        error: function(xhr, status, error) {
+          Swal.fire({
+             toast: true,
+             position: 'top-end',
+             icon: 'error',
+             title: 'Server Busy Now Try Again Later',
+             showConfirmButton: false, 
+             timerProgressBar: true,
+             customClass: {
+                 popup: 'swalContainer',
+                 title: 'swalTitleError'
+             }
+         });
+        }
+    });
 }

@@ -184,11 +184,10 @@ $(document).ready(function() {
 });
 
 //Header Card Scripts
-$(document).ready (function() {
-    loadFormData(); //function call
+$(document).ready(function() {
+    let headlineCounter = 4;
 
-//function for get data from backend
-    function loadFormData(){
+    function loadFormData() {
         $.ajax({
             url: 'phpScripts/header.php',
             type: 'GET',
@@ -198,136 +197,146 @@ $(document).ready (function() {
                     $('#HL1').val(data.data.headerLine1);
                     $('#HL2').val(data.data.headerLine2);
                     $('#HL3').val(data.data.headerLine3);
+                    $('#additionalHeadlines').empty(); // Clear existing additional headlines
+                    if (data.data.additionalHeadlines) {
+                        let additionalHeadlines = JSON.parse(data.data.additionalHeadlines);
+                        additionalHeadlines.forEach((headline, index) => {
+                            addHeadlineRow(headline.value, index + 4);
+                        });
+                        headlineCounter = additionalHeadlines.length + 4; // Update counter
+                    }
                     $('#LI1').attr('src', data.data.logoImage1);
                     $('#LI2').attr('src', data.data.logoImage2);
                 } else {
-                    Swal.fire({
-                        toast: true,
-                        position: 'top-end',
-                        icon: 'error',
-                        title: data.message,
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        customClass: {
-                            popup: 'swalContainer',
-                            title: 'swalTitleError'
-                        }
-                    });
+                    showError(data.message);
                 }
             },
             error: function() {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'error',
-                    title: 'Failed To Load Data',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    customClass: {
-                        popup: 'swalContainer',
-                        title: 'swalTitleError'
-                    }
-                });
+                showError('Failed To Load Data');
             }
         });
     }
 
-//Save Button 'to post the update data in backend'
-    $('#saveHead').click(function() {
-    var formData = new FormData();
-    formData.append('headerLine1', $('#HL1').val());
-    formData.append('headerLine2', $('#HL2').val());
-    formData.append('headerLine3', $('#HL3').val());
-
-   
-    if ($('#uploadFile1')[0].files[0]) {
-        formData.append('logoImage1', $('#uploadFile1')[0].files[0]);
-    }
-    if ($('#uploadFile2')[0].files[0]) {
-        formData.append('logoImage2', $('#uploadFile2')[0].files[0]);
-    }
-    $.ajax({
-        url: 'phpScripts/header.php',
-        type: 'POST',
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function(response) {
-            try {
-                let data = JSON.parse(response);
-                if (data.success) {
-                    Swal.fire({
-                        toast: true,
-                        position: 'top-end',
-                        icon: 'success',
-                        title: data.message,
-                        showConfirmButton: false,
-                        timer: 1500,
-                        timerProgressBar: true,
-                        customClass: {
-                            popup: 'swalContainer',
-                            title: 'swalTitleSuccess'
-                        }
-                    });
-                    loadFormData();
-                } else {
-                    Swal.fire({
-                        toast: true,
-                        position: 'top-end',
-                        icon: 'error',
-                        title: data.message,
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        customClass: {
-                            popup: 'swalContainer',
-                            title: 'swalTitleError'
-                        }
-                    });
-                }
-            } catch (e) {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'error',
-                    title: 'Failed to update data',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    customClass: {
-                        popup: 'swalContainer',
-                        title: 'swalTitleError'
-                    }
-                });
-            }
-        },
-        error: function(xhr, status, error) {
-            
-            Swal.fire({
-                toast: true,
-                position: 'top-end',
-                icon: 'error',
-                title: 'Failed to update data',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                customClass: {
-                    popup: 'swalContainer',
-                    title: 'swalTitleError'
-                }
-            });
+    function addHeadlineRow(value = '', id = null) {
+        if (!id) {
+            id = headlineCounter++;
         }
-    });
+        let rowHtml = `
+            <div class="row p-4 pt-1 headlineRow" id="headlineRow${id}">
+                <div class="col-md-2 text-md-end">
+                    <label class="form-label" for="HL${id}">Head Line ${id}</label>
+                </div>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" name="headLine${id}" id="HL${id}" value="${value}">
+                </div>
+                <div class="col-md-1 text-md-end mt-md-0 mt-2">
+                    <button type="button" class="btn btn-danger removeHeadlineBtn rounded-5" data-id="${id}"><i class="fa-solid fa-trash fa-lg"></i></button>
+                </div>
+            </div>
+        `;
+        $('#additionalHeadlines').append(rowHtml);
+    }
+
+    $('#addHeadlineBtn').click(function() {
+        addHeadlineRow();
     });
 
-//reset button Script
-    $('#resetHead').on('click', function() {
-    $('#header')[0].reset();
+    $('#additionalHeadlines').on('click', '.removeHeadlineBtn', function() {
+        let id = $(this).data('id');
+        $(`#headlineRow${id}`).remove();
     });
-    loadFormData();//initial load
+
+    $('#saveHead').click(function() {
+        var formData = new FormData();
+        formData.append('headerLine1', $('#HL1').val());
+        formData.append('headerLine2', $('#HL2').val());
+        formData.append('headerLine3', $('#HL3').val());
+
+        let headlinesArray = [];
+        $('#additionalHeadlines .headlineRow').each(function() {
+            let headlineValue = $(this).find('input').val();
+            headlinesArray.push({ value: headlineValue });
+        });
+
+        formData.append('additionalHeadlines', JSON.stringify(headlinesArray));
+
+        if ($('#uploadFile1')[0].files[0]) {
+            formData.append('logoImage1', $('#uploadFile1')[0].files[0]);
+        }
+        if ($('#uploadFile2')[0].files[0]) {
+            formData.append('logoImage2', $('#uploadFile2')[0].files[0]);
+        }
+
+        $.ajax({
+            url: 'phpScripts/header.php',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                try {
+                    let data = JSON.parse(response);
+                    if (data.success) {
+                        showSuccess(data.message);
+                        loadFormData();
+                    } else {
+                        showError(data.message);
+                    }
+                } catch (e) {
+                    showError('Failed to update data');
+                }
+            },
+            error: function(xhr, status, error) {
+                showError('Failed to update data');
+            }
+        });
+    });
+
+    $('#resetHead').on('click', function() {
+        $('#header')[0].reset();
+        $('#additionalHeadlines').empty();
+        headlineCounter = 4; 
+    });
+
+    function showError(message) {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: message,
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            customClass: {
+                popup: 'swalContainer',
+                title: 'swalTitleError'
+            }
+        });
+    }
+
+    function showSuccess(message) {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: message,
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            customClass: {
+                popup: 'swalContainer',
+                title: 'swalTitleSuccess'
+            }
+        });
+    }
+
+    loadFormData();
 });
+
+
+
+
+
 
 //Email Settings Card Scripts
 $(document).ready(function(){

@@ -6,6 +6,7 @@
       <div class="text-primary fw-bold responsive-text-PU text-center hl-1"></div>
       <div class="fw-bold responsive-text text-center hl-2"></div>
       <div class="fw-bold responsive-text text-center hl-3"></div>
+      <div id="additionalHeadline"></div>
    </div>
    <div class="col-3 col-xl-2 text-center">
       <img src="" alt="periyar" width="120px" class="imageHandle li-2">
@@ -25,6 +26,20 @@
                $('.hl-3').text(data.data.headerLine3);  
                $('.li-1').attr('src', data.data.logoImage1); 
                $('.li-2').attr('src', data.data.logoImage2); 
+
+                 // Clear existing additional headlines
+                $('#additionalHeadline').empty();
+                
+                // Update additional headlines
+                if (data.data.additionalHeadlines) {
+                    let additionalHeadlines = JSON.parse(data.data.additionalHeadlines);
+                    additionalHeadlines.forEach((headline, index) => {
+                        let headlineElement = `
+                            <div class="fw-bold responsive-text text-center additional-hl">${headline.value}</div>
+                        `;
+                        $('#additionalHeadline').append(headlineElement);
+                    });
+                }
             }
          });
       }

@@ -135,7 +135,7 @@ function loadAdmissions() {
                toast: true,
                position: 'top-end',
                icon: 'error',
-               title: 'Server Busy Now. Please try again later.',
+               title: 'Please  Fill out all the field',
                showConfirmButton: false,
                timerProgressBar: true,
                customClass: {

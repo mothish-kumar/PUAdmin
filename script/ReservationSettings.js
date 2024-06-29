@@ -1,17 +1,107 @@
-//datePicker Script
-$(function() {
-   $('#datePicker').datepicker({
-      format: 'yyyy-mm-dd',
-      autoclose: true,
-      todayHighlight: true,
-      orientation: 'bottom auto'
-   }).on('show', function(e) {
-      // Custom event handler for when the date picker is shown
-      $('.datepicker-dropdown').css('width', 'auto');
-      $('.datepicker-dropdown').css('margin-top','10px');
-  });
+
+
+
+ // Fetch the nearest date and initialize the date picker
+ $.ajax({
+    url: 'phpScripts/getNearestDate.php',
+    method: 'GET',
+    dataType: 'json',
+    success: function(response) {
+        const nearestDate = response.date;
+        $('#datePicker').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+            orientation: 'bottom auto',
+            defaultViewDate: nearestDate
+        }).datepicker('setDate', nearestDate);
+        console.log("Nearest Date",nearestDate);
+        // Automatically load data for the nearest date
+        loadReservationData(nearestDate);
+    },
+    error: function() {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: 'Failed to Load Default Date',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            customClass: {
+                popup: 'swalContainer',
+                title: 'swalTitleError'
+            }
+        });
+    }
 });
 
+// Function to load reservation data
+function loadReservationData(date) {
+    $.ajax({
+        url: 'phpScripts/searchReservation.php',
+        method: 'POST',
+        data: { date: date },
+        dataType: 'json',
+        success: function(data) {
+            $('#reservationTable tbody').empty();
+            if(data.length > 0){
+                data.forEach(function(item) {
+                    $('#reservationTable tbody').append(`
+                        <tr class="align-middle">
+                            <td class="text-center">${item.community}</td>
+                            <td><input type="text" class="form-control" name="reservation%" value="${item.reservation}"></td>
+                            <td><input type="checkbox" name="check" value="${item.id}"></td>
+                        </tr>
+                    `);
+                });
+                $('#save').removeClass('d-none'); //shows the update button
+            } else {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'No Data Found',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    customClass: {
+                        popup: 'swalContainer',
+                        title: 'swalTitleError'
+                    }
+                });
+                $('#save').addClass('d-none');
+            }
+        },
+        error: function() {
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'error',
+                title: 'Failed To Load Data',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                customClass: {
+                    popup: 'swalContainer',
+                    title: 'swalTitleError'
+                }
+            });
+        }
+    });
+}
+
+// Initialize the date picker
+$('#datePicker').datepicker({
+    format: 'yyyy-mm-dd',
+    autoclose: true,
+    todayHighlight: true,
+    orientation: 'bottom auto'
+}).on('show', function(e) {
+    // Custom event handler for when the date picker is shown
+    $('.datepicker-dropdown').css('width', 'auto');
+    $('.datepicker-dropdown').css('margin-top', '10px');
+});
 
 //Seach Button Scripts
 $('#searchButton').on('click', function() {
