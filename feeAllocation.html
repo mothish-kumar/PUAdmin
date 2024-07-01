@@ -17,7 +17,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <!--Custom CSS --> 
     <link rel="stylesheet" href="style/BasicSettings.css">
-    <link rel="stylesheet" href="style/ReservationSettings.css">
 </head>
 
 <body>  
@@ -35,6 +34,149 @@
     <!--End Header--> 
     <hr class="thick-hr  mt-0 mb-0">
     <!--Start Body Content-->
+    <div class="h3 fw-bold mt-2 ms-2" style="color: #2C3E50;">Fees Announcement </div>
+
+    <div class="container">
+        <div class="card">
+           <div class="card-header h4 d-flex justify-content-between align-items-center" style="background-color: #3b7ddd; color: #fff;">
+              Fees Announcement List
+              <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">+ Add New</button>
+           </div>
+
+           <div class="card-body" style="background-color: rgba(240, 238, 238, 0.89);">
+              <form id="feesAllocation" class="p-3">
+                <div class="row pt-3 align-items-center">
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                        <label for="admissionYearSearch" class="form-label  ps-5 fs-6" >Select Admission</label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="input-group">
+                          <select id="admissionYearSearch" class="form-control">
+                             <option value="" selected></option>
+                             <!--Dynamic Options From Database-->
+                           </select>
+                            <button type="button" class="btn text-light" style="border-top-right-radius: 50px; border-bottom-right-radius: 50px; background-color: #2C3E50;" id="searchButton"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
+                        </div>
+                    </div>
+                 </div>
+                    <div class="card-body" style="background-color: rgba(240, 238, 238, 0.89);">
+                       <div class="row mb-3 ms-4">
+                          <label for="records_per_page" class="col-form-label">Records per page</label>
+                          <select class="form-select" id="records_per_page" name="records_per_page" style="width: 200px;">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                          </select>
+                          <div class="input-group" style="width: 200px;">
+                                <input type="text" id="searchInput" class="form-control form-control-sm" placeholder="Search in table">
+                          </div>
+                       </div>
+
+                       <table class="table table-bordered">
+                          <thead>
+                                <tr>
+                                   <th scope="col">#</th>
+                                   <th scope="col">Academic Year</th>
+                                   <th scope="col">Degree & Course</th>
+                                   <th scope="col">Quota</th>
+                                   <th scope="col">View</th>
+                                </tr>
+                          </thead>
+                          <tbody id="application-data">
+                                <!-- Data will be populated here -->
+                          </tbody>
+                       </table>
+
+                       <div id="entry-count" class="mt-2"></div>
+                       <div id="pagination-controls" class="d-flex justify-content-end mt-3">
+                          <nav aria-label="Page navigation">
+                                <ul class="pagination">
+                                   <li class="page-item"><button class="page-link" id="prevPage" aria-label="Previous">
+                                      <span aria-hidden="true">&laquo;</span>
+                                   </button></li>
+                                   <li class="page-item"><button class="page-link" id="nextPage" aria-label="Next">
+                                      <span aria-hidden="true">&raquo;</span>
+                                   </button></li>
+                                </ul>
+                          </nav>
+                       </div>
+                    </div>
+              </form>
+           </div>
+        </div>
+        <!--Model-->
+        <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addModalLabel">Add New Fee Announcement</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="addDept">
+                     <div class="modal-body">
+                        <select class="form-select mb-2" id="departments">
+                            <option value ="" selected>Select Department</option>
+                            <!-- dynamic options from js-->
+                       </select>
+                       <select class="form-select mb-2" id="courses">
+                        <option value ="" selected>Select Course</option>
+                        <!-- dynamic options from js-->
+                       </select>
+                       <select class="form-select mb-2" id="quota">
+                        <option value ="" selected>Select Quota</option>
+                        <option value ="General" >General</option>
+                        <option value="SC/SC(A)/ST">SC/SC(A)/ST</option>
+                        <option value="Differentely Abled">Differentely Abled</option>
+                        <option value="SAARC">SAARC</option>
+                       </select>
+                       <select class="form-select mb-2" id="admissionYear">
+                        <option value ="" selected>Select Academic Year</option>
+                        <!-- dynamic options from js-->
+                       </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tabledata" >Search</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="tabledata" tabindex="-1" aria-labelledby="addTableLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="model-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addTableLabel">Add New Fee Announcement</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="dynamicTable">
+                        <div class="modal-body">
+                            <table class="table table-striped">
+                                <thead>
+                                      <tr>
+                                         <th scope="col">#</th>
+                                         <th scope="col">Application No</th>
+                                         <th scope="col">Degree & Course</th>
+                                         <th scope="col">Applicant Name</th>
+                                         <th scope="col">Action</th>
+                                         <th scope="col">Print</th>
+                                      </tr>
+                                </thead>
+                                <tbody id="data">
+                                      <!-- Data will be populated here -->
+                                </tbody>
+                             </table>
+                       </div>
+                       <div class="modal-footer">
+                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                           <button type="button" class="btn btn-primary" id="addbtn" >Add</button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+     </div>
     <!--End Body Content-->
 
         </div>
@@ -51,7 +193,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <!--Custom JS-->
     <script src="script/BasicSettings.js"></script>
-    <script src="script/ReservationSettings.js"></script>
+    <script src="script/feeAllocation.js"></script>
 </body>
   
 </html>
