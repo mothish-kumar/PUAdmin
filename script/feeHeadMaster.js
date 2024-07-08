@@ -71,7 +71,7 @@ $(document).ready(function(){
       //data get from HTML page
       const recordsPerPage = $('#records_per_page').val();
         const searchQuery = $('#searchInput').val();
-        //Conact with Backend
+        //Connect with Backend
       $.ajax({
          url:'phpScripts/getFeeHeadMaster.php',
          method:'GET',
