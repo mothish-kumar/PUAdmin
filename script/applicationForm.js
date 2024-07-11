@@ -49,24 +49,24 @@ $(document).ready(function(){
   });
  
  //Admission Year Options Getter
-$(document).ready(function(){
-   $.ajax({
-     url:'phpScripts/getOptionsAdmissionYear.php',
-     type:'GET',
-     dataType:'json',
-     success: function(data){
-        var $admissionYearOptions = $('#admissionYearOptions');
-        $.each(data, function(index,item){
-           $admissionYearOptions.append(
-              $('<option>',{value: item.id , text:item.start_year +'-'+ item.end_year})
-           );
-        });
-     },
-     error: function(jqXHR, textStatus, errorThrown) {
-        console.log('Error: ' + textStatus + ' - ' + errorThrown);
-    }
+ $(document).ready(function(){
+    $.ajax({
+      url:'phpScripts/getOptionsAdmissionYear.php',
+      type:'GET',
+      dataType:'json',
+      success: function(data){
+         var $admissionYearOptions = $('#admissionYearOptions');
+         $.each(data, function(index,item){
+            $admissionYearOptions.append(
+               $('<option>',{value: item.id , text:item.start_year +'-'+ item.end_year})
+            );
+         });
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+         console.log('Error: ' + textStatus + ' - ' + errorThrown);
+     }
+    });
    });
-  });
 
 
 // form Submission

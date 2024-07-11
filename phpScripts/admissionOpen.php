@@ -5,7 +5,6 @@ include('config.php');
 $startYear = $_POST['startYear'];
 $endYear = $_POST['endYear'];
 $admissionMonth = $_POST['admissionMonth'];
-$courses = implode(',', $_POST['courses']);
 $activeStatus = $_POST['activeStatus']; // Assuming user provides the active status
 
 // Check if the user is setting this row as active
@@ -19,10 +18,10 @@ if ($activeStatus === 'Active') {
 
     if ($updateStmt->execute()) {
         // Now, insert the new row with the provided active_status
-        $insertQuery = "INSERT INTO admissionOpen (start_year, end_year, admission_month, courses, active_status)
-                        VALUES (?, ?, ?, ?, ?)";
+        $insertQuery = "INSERT INTO admissionOpen (start_year, end_year, admission_month, active_status)
+                        VALUES (?, ?, ?, ?)";
         $insertStmt = $con->prepare($insertQuery);
-        $insertStmt->bind_param("sssss", $startYear, $endYear, $admissionMonth, $courses, $activeStatus);
+        $insertStmt->bind_param("ssss", $startYear, $endYear, $admissionMonth, $activeStatus);
 
         if ($insertStmt->execute()) {
             $con->commit();
@@ -41,10 +40,10 @@ if ($activeStatus === 'Active') {
     $updateStmt->close();
 } else {
     // If the user sets activeStatus to "Inactive", simply insert the row with provided status
-    $insertQuery = "INSERT INTO admissionOpen (start_year, end_year, admission_month, courses, active_status)
-                    VALUES (?, ?, ?, ?, ?)";
+    $insertQuery = "INSERT INTO admissionOpen (start_year, end_year, admission_month, active_status)
+                    VALUES (?, ?, ?, ?)";
     $insertStmt = $con->prepare($insertQuery);
-    $insertStmt->bind_param("sssss", $startYear, $endYear, $admissionMonth, $courses, $activeStatus);
+    $insertStmt->bind_param("ssss", $startYear, $endYear, $admissionMonth, $activeStatus);
 
     if ($insertStmt->execute()) {
         $response = array('success' => true);

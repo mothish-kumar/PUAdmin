@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Application Settings Page</title>
+    <!--FontAwesome CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Bootstrap CDN-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!--DatePicker CDN-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <!--Sweet Alert CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!--Multiple selection CDN-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/css/multi-select-tag.css">
+        <!--Custom CSS --> 
+    <link rel="stylesheet" href="style/BasicSettings.css">
+    <link rel="stylesheet" href="style/ReservationSettings.css">
+    <link rel="stylesheet" href="style/onlineApplicationSettings.css">
+    
+</head>
+
+<body>  
+    <div class="wrapper">
+        <!--Start Slide Bar -->
+        <aside id="sidebar">
+        </aside>
+        <!--End Slide Bar-->
+        <div class="main ">
+            <!--Start Header-->
+    <div class="header"  style='margin-top: 20px;'>
+        <div class="container-fluid" id="headerbar">
+        </div>
+     </div>
+    <!--End Header--> 
+    <hr class="thick-hr  mt-0 mb-0">
+    <!--Start Body Content-->
+    <div class="h3 fw-bold mt-2 ms-2" style="color: #2C3E50;">Online Application Settings </div>
+     <div class="container mt-3 ">
+      <form id="applicationSettings">
+         <div class="row ">
+            <div class="col-lg-2 col-md-4">
+               <label for="admissionYearOptions" class="form-label">Select Admission</label>
+            </div>
+            <div class="col-lg-5 col-md-12">
+               <select class="form-select" id="admissionYearOptions" name="admissionYearOptions">
+                  <option value ="" selected></option>
+               </select>
+            </div>
+         </div>
+         <div class="row mt-3">
+            <div class="col-lg-2 col-md-4">
+               <label for="lastPaymentDate" class="form-label fs-6" >Last Payment Date</label>
+            </div>
+           <div class="col-lg-5 col-md-12">
+                   <input type="text" id="lastPaymentDate" name="lastPaymentDate" class="datePicker form-control">
+           </div>
+         </div>
+         <div class="row mt-3">
+            <div class="col-lg-2">
+               <label class="form-label">Apply Now </label>
+            </div>
+            <div class="col-lg-1 col-2">
+               <div class="form-check form-switch fs-4">
+                  <input class="form-check-input" type="checkbox" role="switch" id="applyNow" name="applyNow">
+                </div>
+            </div>
+            <div class="col-lg-2 col-5">
+               <input type="text" class="datePicker form-control" id="applyNowBtnStart" name="applyNowBtnStart" placeholder="Open Date">
+            </div>
+            <div class="col-lg-2 col-5">
+               <input type="text" class="datePicker form-control" id="applyNowBtnEnd" name="applyNowBtnEnd" placeholder="Close Date">
+            </div>
+         </div>
+         <div class="row mt-3">
+            <div class="col-lg-2">
+               <label class="form-label">Applicant Login </label>
+            </div>
+            <div class="col-lg-1 col-2">
+               <div class="form-check form-switch fs-4">
+                  <input class="form-check-input" type="checkbox" role="switch" id="applicantLogin" name="applicantLogin">
+                </div>
+            </div>
+            <div class="col-lg-2 col-5">
+               <input type="text" class="datePicker form-control" id="loginBtnStart" placeholder="Open Date" name="loginBtnStart">
+            </div>
+            <div class="col-lg-2 col-5">
+               <input type="text" class="datePicker form-control" id="loginBtnEnd" placeholder="Close Date" name="loginBtnEnd">
+            </div>
+         </div>
+         <div class="row mt-3">
+            <div class="col-lg-2 col-md-4">
+               <label for="pageLink" class="form-label">Online Application</label>
+            </div>
+            <div class="col-lg-5 col-md-12">
+               <input type="text" class="form-control" id="pageLink" name="pageLink" placeholder="Enter Link to Publish...">
+            </div>
+         </div>
+         <div class="row mt-3">
+            <div class="col-lg-2 col-md-2">
+               <label class="form-label">Courses</label>
+            </div>
+            <div class="col-lg-5 col-md-12">
+               <select id="courses" name="courses" class="form-control" multiple>
+               </select>
+            </div>      
+         </div>
+         <div class="row mt-3">
+            <div class="col-lg-2 col-md-2">
+               <label class="form-label">Prospectus</label>
+            </div>
+            <div class="col-lg-5 col-md-12 d-flex justify-content-around">
+               <label for="prospectusPdf" class="btn rounded-5 py-sm-2 px-sm-4 fw-bold" style="background-color: #2C3E50; color: white;"><i class="fa-solid fa-link"></i> Link PDF</label>
+                     <input type="file" id="prospectusPdf" name="prospectusPdf" style="display: none;">
+               <button type="button" class="btn btn-info rounded-5 text-light fw-bold px-sm-4" id="prospectusViewBtn"><i class="fa-regular fa-eye"></i> View</button>
+               <button type="button" class="btn btn-danger rounded-5 text-light fw-bold px-sm-4" id="prospectusDeleteBtn"><i class="fa-solid fa-trash"></i> Remove</button>
+            </div>
+         </div>
+         <div class="row mt-3">
+            <div class="col-lg-2 col-md-2">
+               <label class="form-label">Instruction</label>
+            </div>
+            <div class="col-lg-5 col-md-12 d-flex justify-content-around">
+               <label for="instructionPdf" class="btn rounded-5 py-sm-2 px-sm-4 fw-bold" style="background-color: #2C3E50; color: white;"><i class="fa-solid fa-link"></i> Link PDF</label>
+                        <input type="file" id="instructionPdf" name="instructionPdf" style="display: none;">
+               <button type="button" class="btn btn-info rounded-5 text-light fw-bold px-sm-4" id="instructionViewBtn"><i class="fa-regular fa-eye"></i> View</button>
+               <button type="button" class="btn btn-danger rounded-5 text-light fw-bold px-sm-4" id="instructionDeleteBtn"><i class="fa-solid fa-trash"></i> Remove</button>
+            </div>
+         </div>
+         <div class="row mt-3">
+            <div class="col-lg-2 col-md-2">
+               <label class="form-label">Home Page</label>
+            </div>
+            <div class="col-lg-5 col-md-12 d-flex justify-content-around">
+               <label for="homePagePdf" class="btn rounded-5 py-sm-2 px-sm-4 fw-bold" style="background-color: #2C3E50; color: white;"><i class="fa-solid fa-link"></i> Link PDF</label>
+                        <input type="file" id="homePagePdf" name="homePagePdf" style="display: none;">
+               <button type="button" class="btn btn-info rounded-5 text-light fw-bold px-sm-4" id="homeViewBtn"><i class="fa-regular fa-eye"></i> View</button>
+               <button type="button" class="btn btn-danger rounded-5 text-light fw-bold px-sm-4" id="homeDeleteBtn"><i class="fa-solid fa-trash"></i> Remove</button>
+            </div>
+         </div>
+         <div class="row mt-4">
+            <div class="col-lg-7 col-md-12 d-flex justify-content-evenly">
+               <button class="btn btn-secondary rounded-5 px-5" type="reset" id="resetBtn">Reset</button>
+            <button class="btn btn-primary rounded-5 px-5" type="button" id="saveBtn">Save</button>
+            </div>
+         </div>
+      </form>
+     </div>
+    <!--End Body Content-->
+
+        </div>
+    </div>
+    <!--Font Awesome JS CDN-->
+    <script src="https://kit.fontawesome.com/7c2426f918.js" crossorigin="anonymous"></script>
+    <!--Bootstrap JS CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+        <!--JQuery CDN-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--DatePicker JS CDN-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <!--Multiple Selection Script CDN-->
+    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/js/multi-select-tag.js"></script>
+    <!--Custom JS-->
+    <script src="script/BasicSettings.js"></script>
+    <script src="script/onlineApplicationSettings.js"></script>
+</body>
+  
+</html>

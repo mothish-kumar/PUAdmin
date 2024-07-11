@@ -6,7 +6,6 @@ $id = $_POST['id'];
 $startYear = $_POST['startYear'];
 $endYear = $_POST['endYear'];
 $admissionMonth = $_POST['admissionMonth'];
-$courses = is_array($_POST['courses']) ? implode(',', $_POST['courses']) : $_POST['courses'];
 $activeStatus = $_POST['activeStatus'];
 
 // Check the current active status of the row being updated
@@ -19,7 +18,7 @@ $stmtCheckCurrentStatus->fetch();
 $stmtCheckCurrentStatus->close();
 
 // Prepare the SQL statement for updating the record
-$queryUpdate = "UPDATE admissionOpen SET start_year = ?, end_year = ?, admission_month = ?, courses = ?, active_status = ? WHERE id = ?";
+$queryUpdate = "UPDATE admissionOpen SET start_year = ?, end_year = ?, admission_month = ?, active_status = ? WHERE id = ?";
 $stmtUpdate = $con->prepare($queryUpdate);
 
 if ($stmtUpdate === false) {
@@ -29,7 +28,7 @@ if ($stmtUpdate === false) {
 }
 
 // Bind parameters
-$stmtUpdate->bind_param("sssssi", $startYear, $endYear, $admissionMonth, $courses, $activeStatus, $id);
+$stmtUpdate->bind_param("ssssi", $startYear, $endYear, $admissionMonth, $activeStatus, $id);
 
 // Execute the update statement
 if ($stmtUpdate->execute()) {

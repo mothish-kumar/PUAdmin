@@ -12,7 +12,7 @@ $(document).ready(function() {
     let $LI2 = $('#LI2');
     let $uploadFile1 = $('#uploadFile1');
     let $uploadFile2 = $('#uploadFile2');
- 
+  
     $uploadFile1.on('change', function() {
         $LI1.attr('src', URL.createObjectURL(this.files[0]));
     });
@@ -26,7 +26,7 @@ let refreshButtons = document.getElementsByClassName('refreshButton');
 
 for (let i = 0; i < refreshButtons.length; i++) {
     refreshButtons[i].addEventListener('click', function() {
-        location.reload();
+        location.reload();  
     });
 }
 

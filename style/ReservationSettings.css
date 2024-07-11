@@ -1,5 +1,5 @@
 /* Custom styles for the date picker input */
-#datePicker {
+.datePicker {
    font-size: 16px;
    color: #2C3E50;
 }
@@ -29,7 +29,7 @@
    background: #2C3E50;
    color: #fff;
 }
-#datePicker:focus {
+.datePicker:focus {
    outline: none;
    box-shadow: none;
 }

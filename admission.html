@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Settings Page</title>
+    <title>Admission Open Page</title>
     <!--FontAwesome CDN-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--Bootstrap CDN-->
@@ -13,8 +13,6 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!--Sweet Alert CDN-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!--Multiple selection CDN-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/css/multi-select-tag.css">
         <!--Custom CSS --> 
     <link rel="stylesheet" href="style/BasicSettings.css">
     <link rel="stylesheet" href="style/admission.css">
@@ -78,22 +76,7 @@
                            </select>
                      </div>                     
                   </div>
-                  <div class="row pt-2">
-                     <div class="col-lg-3 col-md-4 text-center">
-                        <label class="form-label">Course</label>
-                     </div>
-                     <div class="col-lg-6 col-md-8">
-                        <select id="courses" class="form-control" multiple>
-                           <option value="MCA">MCA</option>
-                           <option value="MBA">MBA</option>
-                           <option value="MSC CS">MSC CS</option>
-                           <option value="MSC DS">MSC DS</option>
-                           <option value="M COM">M COM</option>
-                           <option value="MS PHYSICS">MS PHYSICS</option>
-                           <option value="MSC CHEMISTRY">MSC CHEMISTRY</option>
-                           </select>
-                     </div>                     
-                  </div>
+
                   <div class="row pt-2">
                      <div class="col-lg-3 col-5 text-center">
                         <label class="form-label"> Active Status</label>
@@ -127,7 +110,6 @@
                           <th>Academic Year</th>
                           <th>Admission Month </th>
                           <th>Status</th>
-                          <th>Courses</th>
                           <th>Edit</th>
                           <th>Delete</th>
                       </tr>
@@ -153,12 +135,10 @@
         crossorigin="anonymous"></script>
         <!--JQuery CDN-->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <!--Multiple Selection Script CDN-->
-    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/js/multi-select-tag.js"></script>
     <!--Custom JS-->
     <script src="script/BasicSettings.js"></script>
     <script src="script/admission.js"></script>
 
-</body>
+</body>   
   
 </html>
