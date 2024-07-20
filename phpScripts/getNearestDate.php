@@ -2,12 +2,12 @@
 // Database connection
 include "config.php";
 
-$query = "SELECT creation_date FROM reservations ORDER BY ABS(DATEDIFF(creation_date, CURDATE())) LIMIT 1";
+$query = "SELECT adddate FROM reservationsSettings ORDER BY ABS(DATEDIFF(adddate, CURDATE())) LIMIT 1";
 $result = $con->query($query);
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    echo json_encode(['date' => $row['creation_date']]);
+    echo json_encode(['date' => $row['adddate']]);
 } else {
     echo json_encode(['date' => date('Y-m-d')]);
 }

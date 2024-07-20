@@ -36,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             return false;
         }
     }
-
     // Handle file uploads
     $prospectusPdfPath = '';
     if (isset($_FILES['prospectusPdf'])) {
@@ -67,43 +66,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Prepare SQL statement for updating the record
     $stmt = $con->prepare("UPDATE application_settings SET admission_year_options = ?, last_payment_date = ?, apply_now = ?, appl_now_btn_start = ?, apply_now_btn_end = ?, applicant_login = ?, login_btn_start = ?, login_btn_end = ?, page_link = ?, prospectus_pdf = ?, instruction_pdf = ?, home_page_pdf = ?, created_at = NOW(), courses = ? WHERE id = 1");
+// Check if the statement preparation was successful
+if ($stmt) {
+    // Bind parameters to the prepared statement
+    // Assuming `courses` needs to be stored as JSON in the database, encode it back to JSON
+    $encodedCourses = json_encode($courses);
+    $stmt->bind_param('sssssssssssss', 
+        $admissionYearOptions, $lastPaymentDate, $applyNow, $applyNowBtnStart, $applyNowBtnEnd, 
+        $applicantLogin, $loginBtnStart, $loginBtnEnd, $pageLink, $prospectusPdfPath, 
+        $instructionPdfPath, $homePagePdfPath, $encodedCourses);
 
-    // Check if the statement preparation was successful
-    if ($stmt) {
-        // Bind parameters to the prepared statement
-        // Assuming `courses` needs to be stored as JSON in the database, encode it back to JSON
-        $encodedCourses = json_encode($courses);
-        $stmt->bind_param('sssssssssssss', 
-            $admissionYearOptions, $lastPaymentDate, $applyNow, $applyNowBtnStart, $applyNowBtnEnd, 
-            $applicantLogin, $loginBtnStart, $loginBtnEnd, $pageLink, $prospectusPdfPath, 
-            $instructionPdfPath, $homePagePdfPath, $encodedCourses);
-
-        // Execute the statement
-        if ($stmt->execute()) {
-            echo json_encode(["success" => true, "message" => "Settings updated successfully"]);
-        } else {
-            echo json_encode(["success" => false, "message" => "Error executing statement: " . $stmt->error]);
-        }
-
-        // Close the prepared statement
-        $stmt->close();
+    // Execute the statement
+    if ($stmt->execute()) {
+        echo json_encode(["success" => true, "message" => "Settings updated successfully"]);
     } else {
-        echo json_encode(["success" => false, "message" => "Error preparing statement: " . $con->error]);
+        echo json_encode(["success" => false, "message" => "Error executing statement: " . $stmt->error]);
     }
 
-    // Close the database connection
-    $con->close();
+    // Close the prepared statement
+    $stmt->close();
+} else {
+    echo json_encode(["success" => false, "message" => "Error preparing statement: " . $con->error]);
+}
+
+// Close the database connection
+$con->close();
 } 
 elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-    $sql = "SELECT * FROM application_settings WHERE id = 1";
-    $result = $con->query($sql);
-    if ($result && $result->num_rows > 0) {
-        $settings = $result->fetch_assoc();
-        echo json_encode(["success" => true, "message" => "Getted Successfully ", "data" => $settings]);
-    } else {
-        echo json_encode(["success" => false, "message" => "Error preparing statement: "]);
-    }
+$sql = "SELECT * FROM application_settings WHERE id = 1";
+$result = $con->query($sql);
+if ($result && $result->num_rows > 0) {
+    $settings = $result->fetch_assoc();
+    echo json_encode(["success" => true, "message" => "Getted Successfully ", "data" => $settings]);
+} else {
+    echo json_encode(["success" => false, "message" => "Error preparing statement: "]);
+}
 } 
 else {
     echo json_encode(["success" => false, "message" => "Invalid Request Method: " . $_SERVER['REQUEST_METHOD']]);

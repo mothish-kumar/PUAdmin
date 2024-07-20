@@ -62,10 +62,52 @@
                                         </div>
                                         <div class="modal-body p-4">
                                             <form id="addForm">
-                                                <label for="community" class="form-label">Community:</label>
-                                                <input type="text" id="community" name="community" class="form-control">
-                                                <label for="reservation" class="form-label">Reservation %:</label>
-                                                <input type="text" id="reservation" name="reservation" class="form-control"> 
+                                                <input type="text" name="dateGetter" id="dateGetter" class="form-control mb-3" placeholder="Enter the Date...">
+                                                <table class="table table-borderless" >
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Community</th>
+                                                            <th>Reservation %</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tableData">
+                                                        <tr>
+                                                            <td><input type="text" name="OCLabel" class="form-control" id="OCLabel" value="OC"></td> 
+                                                            <td><input type="text" id="OCPer" name="OCPer" class="form-control"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="text" name="BCLabel" class="form-control" id="BCLabel" value="BC"></td> 
+                                                            <td><input type="text" id="BCPer" name="BCPer" class="form-control"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="text" name="BCMLabel" class="form-control" id="BCMLabel" value="BC(Muslim)"></td> 
+                                                            <td><input type="text" id="BCMPer" name="BCMPer" class="form-control"></td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td><input type="text" name="DNCLabel" class="form-control" id="DNCLabel" value="DNC"></td> 
+                                                                <td><input type="text" id="DNCPer" name="DNCPer" class="form-control"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="text" name="MBCLabel" class="form-control" id="MBCLabel" value="MBC"></td> 
+                                                            <td><input type="text" id="MBCPer" name="MBCPer" class="form-control"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="text" name="SCLabel" class="form-control" id="SCLabel" value="SC"></td> 
+                                                            <td><input type="text" id="SCPer" name="SCPer" class="form-control"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="text" name="SCALabel" class="form-control" id="SCALabel" value="SC(A)"></td> 
+                                                            <td><input type="text" id="SCAPer" name="SCAPer" class="form-control"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="text" name="STLabel" class="form-control" id="STLabel" value="ST"></td> 
+                                                            <td><input type="text" id="STPer" name="STPer" class="form-control"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table> 
+                                                <div class="text-end">
+                                                    <div class="btn btn-secondary rounded-5" id="addCommunityBtn"><i class="fa-solid fa-plus fa-lg"></i> </div>
+                                                </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-danger rounded-5" data-bs-dismiss="modal">Exit</button>
@@ -76,7 +118,6 @@
                                 </div>
                             </div>
                             
-                            <button type="button" class="btn btn-danger rounded-5 p-2 px-3 fw-bold" id="deleteButton"><i class="fa-solid fa-trash fa-l"></i> Remove</button>
                         </div>
                     </div>
                     <div class="row pt-5 align-items-center">

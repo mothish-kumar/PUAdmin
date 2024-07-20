@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="style/BasicSettings.css">
     <link rel="stylesheet" href="style/admission.css">
 </head>
-
+ 
 <body>  
     <div class="wrapper">
         <!--Start Slide Bar -->
@@ -36,67 +36,6 @@
     <div class="container-fluid">
       <div class="h3 fw-bold mt-2" style="color: #2C3E50;">Admission Master</div>
       <div class="container mt-2">
-         <!--Add New Admission Form Card-->
-        <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <h4 class="fw-bold">Add New Admission</h4>
-            </div>
-            <div class="card-body">
-                <form id="admissionForm">
-                  <div class="row">
-                     <div class="col-lg-3 col-md-4 col-12 text-center">
-                        <label class="form-label">Admission Academic Year</label>
-                     </div>
-                     <div class="col-lg-3 col-md-4 col-6">
-                        <input type="text" class="form-control" id="startYear" name="startYear">
-                     </div>
-                     <div class="col-lg-3 col-md-4 col-6">
-                        <input type="text" class="form-control" id="endYear" name="endYear">
-                     </div>
-                  </div>
-                  <div class="row pt-2">
-                     <div class="col-lg-3 col-md-4 text-center">
-                        <label class="form-label">Admission Month</label>
-                     </div>
-                     <div class="col-lg-3 col-md-4">
-                        <select id="monthSelect" class="form-select">
-                           <option value="00"></option>
-                           <option value="January">January</option>
-                           <option value="February">February</option>
-                           <option value="March">March</option>
-                           <option value="April">April</option>
-                           <option value="May">May</option>
-                           <option value="June">June</option>
-                           <option value="July">July</option>
-                           <option value="August">August</option>
-                           <option value="September">September</option>
-                           <option value="October">October</option>
-                           <option value="November">November</option>
-                           <option value="December">December</option>
-                           </select>
-                     </div>                     
-                  </div>
-
-                  <div class="row pt-2">
-                     <div class="col-lg-3 col-5 text-center">
-                        <label class="form-label"> Active Status</label>
-                     </div>
-                     <div class="col-lg-6 col-4 ms-4 ">
-                        <div class="form-check form-switch ">
-                           <input class="form-check-input text-center fs-4" type="checkbox" id="activeToggle"  data-bs-toggle="popover" data-bs-trigger="hover focus" title="Admission Status Note" data-bs-content="Only one admission status can be active other admissions may be set to inactive.">
-                           <label class="form-check-label ps-4 fs-6 pt-1" for="activeToggle" id="statusLabel">Inactive</label>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row pt-3">
-                     <div class="col text-center">
-                         <button type="reset" class="btn btn-primary" id="reset"> Reset </button>
-                         <button type="button" class="btn btn-success" id="addbtn"> Save </button>
-                     </div>
-                  </div>
-               </form>
-            </div> 
-        </div>
         <!--View the Data Card-->
         <div class="card">
          <div class="card-header d-flex justify-content-between align-items-center">

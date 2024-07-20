@@ -3,7 +3,7 @@ include 'config.php';
 
 header('Content-Type: application/json');
 
-$sql = "SELECT departments.name AS department, GROUP_CONCAT(courses.course_name SEPARATOR '|') AS courses FROM courses JOIN departments ON courses.department_id = departments.id GROUP BY departments.name";
+$sql = "SELECT departments.name AS department, GROUP_CONCAT(courses.course_name SEPARATOR '|') AS courses,GROUP_CONCAT(courses.expand_course SEPARATOR '|') AS Cexpand,GROUP_CONCAT(courses.years SEPARATOR '|') AS Cyear,GROUP_CONCAT(courses.semester SEPARATOR '|') AS Csemester FROM courses JOIN departments ON courses.department_id = departments.id GROUP BY departments.name";
 
 $result = $con->query($sql);
 

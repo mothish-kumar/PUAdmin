@@ -62,7 +62,7 @@
 
     $(document).ready(function(){
         //save Button functionality
-        $('#saveBtn').click(function(){
+         $('#saveBtn').click(function(){
             const admissionYearOptionsText = $('#admissionYearOptions').val();
             const lastPaymentDate = $('#lastPaymentDate').val();
             const applyNow = $('#applyNow').is(':checked') ? 'Enabled' : 'Disabled';
@@ -102,73 +102,73 @@
             if ($('#homePagePdf')[0].files[0]) {
                 formData.append('homePagePdf', $('#homePagePdf')[0].files[0]);
             }
-    
-     
             $.ajax({
-              url: 'phpScripts/onlineApplicationSettings.php',
-              type: 'POST',
-              data: formData,
-              processData: false,
-              contentType: false,
-              dataType: 'json',
-              success: function(response) {
-                 if(response.success){
-                    Swal.fire({
-                       toast: true,
-                       position: 'top-end',
-                       icon: 'success',
-                       title: ' Settings Saved Successfully',
-                       showConfirmButton: true,
-                       confirmButtonText : 'OK',
-                       confirmButtonColor: '#2C3E50',
-                       timerProgressBar: false,
-                       customClass: {
-                           popup: 'swalContainer',
-                           title: 'swalTitleSuccess'
-                       }
-                   }).then((result) => {
-                       if (result.isConfirmed) {
-                           location.reload();
-                       }
-                   });
-                 }
-                 else{
-                    Swal.fire({
-                       toast: true,
-                       position: 'top-end',
-                       icon: 'error',
-                       title: 'Something Went wrong'+response.message,
-                       showConfirmButton: false, 
-                       timerProgressBar: true,
-                       timer: 3000,
-                       customClass: {
-                           popup: 'swalContainer',
-                           title: 'swalTitleError'
-                       }
-                   }); 
-                 }
-                 
-              },
-              error: function(xhr, status, error) {
-                console.error('Server Error:', error);
-                 Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'error',
-                    title: 'Server Busy Now Try Again Later',
-                    showConfirmButton: false, 
-                    timerProgressBar: true,
-                    timer: 3000,
-                    customClass: {
-                        popup: 'swalContainer',
-                        title: 'swalTitleError'
-                    }
-                });
-              }
+                url: 'phpScripts/onlineApplicationSettings.php',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                success: function(response) {
+                   if(response.success){
+                      Swal.fire({
+                         toast: true,
+                         position: 'top-end',
+                         icon: 'success',
+                         title: ' Settings Saved Successfully',
+                         showConfirmButton: true,
+                         confirmButtonText : 'OK',
+                         confirmButtonColor: '#2C3E50',
+                         timerProgressBar: false,
+                         customClass: {
+                             popup: 'swalContainer',
+                             title: 'swalTitleSuccess'
+                         }
+                     }).then((result) => {
+                         if (result.isConfirmed) {
+                             location.reload();
+                         }
+                     });
+                   }
+                   else{
+                      Swal.fire({
+                         toast: true,
+                         position: 'top-end',
+                         icon: 'error',
+                         title: 'Something Went wrong'+response.message,
+                         showConfirmButton: false, 
+                         timerProgressBar: true,
+                         timer: 3000,
+                         customClass: {
+                             popup: 'swalContainer',
+                             title: 'swalTitleError'
+                         }
+                     }); 
+                   }
+                   
+                },
+                error: function(xhr, status, error) {
+                  console.error('Server Error:', error);
+                   Swal.fire({
+                      toast: true,
+                      position: 'top-end',
+                      icon: 'error',
+                      title: 'Server Busy Now Try Again Later',
+                      showConfirmButton: false, 
+                      timerProgressBar: true,
+                      timer: 3000,
+                      customClass: {
+                          popup: 'swalContainer',
+                          title: 'swalTitleError'
+                      }
+                  });
+                }
+            });
           });
-        });
+        
         function populateFormFields(settings) {
             $('#admissionYearOptions').val(settings.admission_year_options);
+            $('#pagetxt').val(settings.page_txt);
             $('#lastPaymentDate').val(settings.last_payment_date);
         
             if (settings.apply_now === 'Enabled') {
@@ -193,7 +193,7 @@
             $('#prospectusPdf').data('filepath', settings.prospectus_pdf);
             $('#instructionPdf').data('filepath', settings.instruction_pdf);
             $('#homePagePdf').data('filepath', settings.home_page_pdf);
-
+ 
             //Course data's
             var coursesData = JSON.parse(settings.courses);
             $.each(coursesData,function(index,item){
