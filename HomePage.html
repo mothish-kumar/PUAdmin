@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Application Home</title>
+    <title>Home Page</title>
     <!--FontAwesome CDN-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--Bootstrap CDN-->
@@ -28,19 +28,21 @@
             <hr class="thick-hr mt-0 mb-0">
             <!--Start Body Content-->
             <div class="container-fluid">
-                <div class="responsive-text-PU text-center mt-1 fw-bold">Admission for the year 2024 - 25</div>
+                <div class="responsive-text-PU text-center mt-1 fw-bold">Admission for the year <span id="admyear"></span></div>
                 <div class="container contain">
                     <div class="row" style="height: 45vh;">
                         <div class="col-xxl-6">  
-                            <div class="typing-animation" id="typing-text">15-07-2024 is the Last date for submission of Application through online</div> 
+                            <div class="typing-animation" id="typing-text"></div> 
                             <div class="p-5">
-                                <button class="btn  fw-bold button3D" style="color:#2C3E50; border:2px solid black">Download Prospectus &nbsp; <i class="fa fa-download fa-lg" aria-hidden="true" alt="Download icon"></i></button> &nbsp; &nbsp;&nbsp;
-                                <button class="btn fw-bold button3D" style="color:#2C3E50; border:2px solid black;">Instruction&nbsp;<i class="fa fa-info-circle fa-lg" aria-hidden="true" alt="Info icon"></i></button>
+                                <button class="btn  fw-bold button3D" style="color:#2C3E50; border:2px solid black"  id="prospectusBtn">Download Prospectus &nbsp; <i class="fa fa-download fa-lg" aria-hidden="true" alt="Download icon"></i></button>
+                                <a id="prospectusLink"  download style="display:none;"></a> &nbsp; &nbsp;&nbsp;
+                                <button class="btn fw-bold button3D" style="color:#2C3E50; border:2px solid black;" id="instructionBtn">Instruction&nbsp;<i class="fa fa-info-circle fa-lg" aria-hidden="true" alt="Info icon"></i></button>
+                                <a id="instructionLink"  download style="display:none;"></a>
                             </div>
                         </div>
                         <div class="col-xxl-6 p-5 text-center">
-                            <button class="btn rounded-5 fw-bold shadow-button" style="background: linear-gradient(to right,#405870,#2C3E50); color:white;">Apply Now</button> &nbsp; &nbsp;&nbsp;
-                            <button class="btn rounded-5 fw-bold shadow-button" style="background: linear-gradient(to right,#405870,#2C3E50); color:white;">Applicant Login</button>
+                            <button class="btn rounded-5 fw-bold shadow-button" style="background: linear-gradient(to right,#405870,#2C3E50); color:white;" id="applNowBtn">Apply Now</button> &nbsp; &nbsp;&nbsp;
+                            <button class="btn rounded-5 fw-bold shadow-button" style="background: linear-gradient(to right,#405870,#2C3E50); color:white;" id="applicantLoginBtn">Applicant Login</button>
                         </div>
                     </div>
                     <div class="text-center">

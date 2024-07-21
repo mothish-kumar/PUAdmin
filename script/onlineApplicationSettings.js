@@ -59,11 +59,28 @@
 
 });
 
+//Automatic button disable when End date cross
+$(document).ready(function(){
+    function checkDate() {
+        var closeDate = $('#applyNowBtnEnd').val();
+        var currentDate = new Date().toISOString().split('T')[0];
+
+        if (closeDate && closeDate < currentDate) {
+            $('#applyNow').prop('checked', false);
+         }
+        }
+      // Check date when the page loads
+      checkDate();
+
+      
+});
+
 
     $(document).ready(function(){
         //save Button functionality
          $('#saveBtn').click(function(){
-            const admissionYearOptionsText = $('#admissionYearOptions').val();
+            const admissionYearOptionsText =$('#admissionYearOptions option:selected').text();
+            const pagetxt = $('#pagetxt').val();
             const lastPaymentDate = $('#lastPaymentDate').val();
             const applyNow = $('#applyNow').is(':checked') ? 'Enabled' : 'Disabled';
             const applyNowBtnStart = $('#applyNowBtnStart').val();
@@ -83,6 +100,7 @@
             // Create a FormData object
             const formData = new FormData();
             formData.append('admissionYearOptions', admissionYearOptionsText);
+            formData.append('pagetxt',pagetxt);
             formData.append('lastPaymentDate', lastPaymentDate);
             formData.append('applyNow', applyNow);
             formData.append('applyNowBtnStart', applyNowBtnStart);
@@ -167,7 +185,7 @@
           });
         
         function populateFormFields(settings) {
-            $('#admissionYearOptions').val(settings.admission_year_options);
+            $('#admissionYearOptions option:selected').text(settings.admission_year_options);
             $('#pagetxt').val(settings.page_txt);
             $('#lastPaymentDate').val(settings.last_payment_date);
         
@@ -214,11 +232,35 @@
                 if (response.success) {
                     populateFormFields(response.data);
                 } else {
-                    console.error('Failed to fetch application settings.');
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Something Went wrong',
+                        showConfirmButton: false, 
+                        timerProgressBar: true,
+                        timer: 3000,
+                        customClass: {
+                            popup: 'swalContainer',
+                            title: 'swalTitleError'
+                        }
+                    }); 
                 }
             },
             error: function(xhr, status, error) {
-                console.error('Error fetching application settings:', error);
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Server Busy Now Try Again Later',
+                    showConfirmButton: false, 
+                    timerProgressBar: true,
+                    timer: 3000,
+                    customClass: {
+                        popup: 'swalContainer',
+                        title: 'swalTitleError'
+                    }
+                });
             }
         });
         $('#prospectusViewBtn').click(function() {

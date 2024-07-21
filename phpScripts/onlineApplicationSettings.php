@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Variables from form data
     $admissionYearOptions = $_POST['admissionYearOptions'];
+    $pagetxt = $_POST['pagetxt'];
     $lastPaymentDate = $_POST['lastPaymentDate'];
     $applyNow = $_POST['applyNow'];
     $applyNowBtnStart = $_POST['applyNowBtnStart'];
@@ -65,16 +66,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Prepare SQL statement for updating the record
-    $stmt = $con->prepare("UPDATE application_settings SET admission_year_options = ?, last_payment_date = ?, apply_now = ?, appl_now_btn_start = ?, apply_now_btn_end = ?, applicant_login = ?, login_btn_start = ?, login_btn_end = ?, page_link = ?, prospectus_pdf = ?, instruction_pdf = ?, home_page_pdf = ?, created_at = NOW(), courses = ? WHERE id = 1");
+    $stmt = $con->prepare("UPDATE application_settings SET admission_year_options = ?, last_payment_date = ?, apply_now = ?, appl_now_btn_start = ?, apply_now_btn_end = ?, applicant_login = ?, login_btn_start = ?, login_btn_end = ?, page_link = ?, prospectus_pdf = ?, instruction_pdf = ?, home_page_pdf = ?, created_at = NOW(), courses = ?,page_txt = ? WHERE id = 1");
 // Check if the statement preparation was successful
 if ($stmt) {
     // Bind parameters to the prepared statement
     // Assuming `courses` needs to be stored as JSON in the database, encode it back to JSON
     $encodedCourses = json_encode($courses);
-    $stmt->bind_param('sssssssssssss', 
+    $stmt->bind_param('ssssssssssssss', 
         $admissionYearOptions, $lastPaymentDate, $applyNow, $applyNowBtnStart, $applyNowBtnEnd, 
         $applicantLogin, $loginBtnStart, $loginBtnEnd, $pageLink, $prospectusPdfPath, 
-        $instructionPdfPath, $homePagePdfPath, $encodedCourses);
+        $instructionPdfPath, $homePagePdfPath, $encodedCourses,$pagetxt);
 
     // Execute the statement
     if ($stmt->execute()) {
@@ -98,6 +99,32 @@ $sql = "SELECT * FROM application_settings WHERE id = 1";
 $result = $con->query($sql);
 if ($result && $result->num_rows > 0) {
     $settings = $result->fetch_assoc();
+     // Get the apply_now_btn_end date
+     $applyNowBtnEnd = $settings['apply_now_btn_end'];
+     $loginBtnEnd = $settings['login_btn_end'];
+     $currentDate = date('Y-m-d');
+     
+     // Check if the date has passed
+     if ($applyNowBtnEnd < $currentDate) {
+         // Update apply_now to Disabled
+         $updateSql = "UPDATE application_settings SET apply_now = 'Disabled' WHERE id = 1";
+         if ($con->query($updateSql) === TRUE) {
+             $settings['apply_now'] = 'Disabled';
+         } else {
+             echo json_encode(["success" => false, "message" => "Error updating record: " . $con->error]);
+             exit();
+         }
+     }
+     if ($loginBtnEnd < $currentDate) {
+        // Update apply_now to Disabled
+        $updateSql = "UPDATE application_settings SET applicant_login = 'Disabled' WHERE id = 1";
+        if ($con->query($updateSql) === TRUE) {
+            $settings['applicant_login'] = 'Disabled';
+        } else {
+            echo json_encode(["success" => false, "message" => "Error updating record: " . $con->error]);
+            exit();
+        }
+    }
     echo json_encode(["success" => true, "message" => "Getted Successfully ", "data" => $settings]);
 } else {
     echo json_encode(["success" => false, "message" => "Error preparing statement: "]);
