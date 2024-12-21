@@ -50,7 +50,7 @@
                                 <th>Expansion</th>
                                 <th>Year</th>
                                 <th>Semester</th>
-                                <th>Edit</th>
+                                <th>Update</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
@@ -87,6 +87,33 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger rounded-5" data-bs-dismiss="modal">Exit</button>
                     <button type="button" class="btn btn-primary rounded-5 fw-bold" id="addCoursebtn">Add</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--Edit model-->
+    <div class="modal fade" id="editRow"  tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="addModalLabel">Update </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="updateCourseForm">
+                 <div class="modal-body">
+                    <select id="departmentOptionsE" class="form-control mb-3">
+                        <option value="" selected> Select Department</option>
+                        <!--Dynamic Options From Database-->
+                    </select>
+                    <input type="text" id="newCourseE" class="form-control mb-2 mt-4" placeholder="Enter Course">
+                    <input type="text" id="expandCourseE" class="form-control mb-2 mt-4" placeholder="Enter Full Name of the  Course">
+                    <input type="text" id="yearsE" class="form-control mb-2 mt-4" placeholder="Enter Year of the Course">
+                    <input type="text" id="semesterE" class="form-control mb-2 mt-4" placeholder="Enter Semester of the Course">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger rounded-5" data-bs-dismiss="modal">Exit</button>
+                    <button type="button" class="btn btn-primary rounded-5 fw-bold" id="updateCoursebtn">Update</button>
                 </div>
                 </form>
             </div>

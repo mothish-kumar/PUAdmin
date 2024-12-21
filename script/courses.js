@@ -6,10 +6,14 @@ $(document).ready(function(){
       dataType:'json',
       success: function(data){
          var $departmentOptions = $('#departmentOptions');
+         var $departmentOptionsE = $('#departmentOptionsE');
          $.each(data, function(index,item){
             $departmentOptions.append(
                $('<option>',{value: item.id , text:item.name})
             );
+            $departmentOptionsE.append(
+                $('<option>',{value: item.id , text:item.name})
+             );
          });
       },
       error: function(jqXHR, textStatus, errorThrown) {
@@ -103,30 +107,42 @@ function loadCourses() {
                 $.each(coursesByDepartment, function(index, item) {
                     var courses = item.courses.split('|').map(course => course.trim());
                     var coursesHtml = courses.map(course => `
-                        <div>
+                        <div class = "mt-2">
                             <span>${course}</span>
                             <input type='text' class='form-control' style='display:none;' value='${course}'>
                         </div>
                     `).join('');
                     var Cexpand = item.Cexpand.split('|').map(Ecourse => Ecourse.trim());
                     var CexpandHtml = Cexpand.map(Ecourse => `
-                        <div>
+                        <div class = "mt-2">
                             <span>${Ecourse}</span>
                             <input type='text' class='form-control' style='display:none;' value='${Ecourse}'>
                         </div>
                     `).join('');
                     var Cyear = item.Cyear.split('|').map(year => year.trim());
                     var CyearHtml = Cyear.map(year => `
-                        <div>
+                        <div class = "mt-2">
                             <span>${year}</span>
                             <input type='text' class='form-control' style='display:none;' value='${year}'>
                         </div>
                     `).join('');
                     var Csemester = item.Csemester.split('|').map(semester => semester.trim());
                     var CsemesterHtml = Csemester.map(semester => `
-                        <div>
+                        <div class = "mt-2">
                             <span>${semester}</span>
                             <input type='text' class='form-control' style='display:none;' value='${semester}'>
+                        </div>
+                    `).join('');
+                    var ids = item.id.split('|').map(id => id.trim());
+                    var editBtnHtml = ids.map(id=> `
+                        <div class = "mt-1">
+                             <button class='btn btn-info mt-1 btn-sm' onclick = "editRow(${id})">Edit</button>
+                        </div>
+                    `).join('');
+
+                    var deleteBtnHtml = ids.map(id => `
+                        <div class = "mt-1">
+                            <button class='btn btn-danger mt-1 btn-sm' onclick='deleteRow("${id}")'>Delete</button>
                         </div>
                     `).join('');
                    
@@ -138,69 +154,128 @@ function loadCourses() {
                             <td class = "mt-1">${CexpandHtml}</td>
                             <td class = "mt-1 text-center">${CyearHtml}</td>
                             <td class = "mt-1 text-center">${CsemesterHtml}</td>
-                            <td>
-                                <button class='btn btn-info' onclick='editRow(this)'>Edit</button>
-                                <button class='btn btn-primary' style='display:none;' onclick='saveRow(this, "${item.department}")'>Save</button>
-                            </td>
-                            <td>
-                                <button class='btn btn-danger' onclick='deleteRow("${item.department}")'>Delete</button>
-                            </td>
+                            <td class = "mt-1">${editBtnHtml}</td>
+                            <td class = "mt-1">${deleteBtnHtml}</td>
                         </tr>`);
                 });
             }
         },
         error: function() {
-            alert('An error occurred while loading the courses.');
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'error',
+                title: 'Server Busy Now Try Again Later',
+                showConfirmButton: false, 
+                timerProgressBar: true,
+                customClass: {
+                    popup: 'swalContainer',
+                    title: 'swalTitleError'
+                }
+            });
         }
     });
  }
 
 //Edit Function
 
-function editRow(button) {
-    var row = $(button).closest('tr');
-    row.find('span').hide();
-    row.find('input').show();
-    row.find('.btn-info').hide();
-    row.find('.btn-primary').show();
-}
-
-// updata Function
-
-function saveRow(button, department) {
-    var row = $(button).closest('tr');
-    var courses = row.find('input').map(function() {
-        return $(this).val();
-    }).get();
+function editRow(id) {
+   var model = new bootstrap.Modal($('#editRow')) 
+    model.show();
 
     $.ajax({
-        url: 'phpScripts/editCourse.php',
-        type: 'POST',
-        dataType: 'json',
-        data: {
-            department: department,
-            courses: courses
+        url:'phpScripts/getCourseE.php',
+        type:'POST',
+        data:{
+            id:id
         },
-        success: function(response) {
-            if (response.success) {
-                loadCourses();
-            } else {
-                alert('Failed to save the changes: ' + response.error);
+        success:function(response){
+            if (response.success){
+                const data = response.data;
+                $('#departmentOptionsE').val(data.department_id) ;
+                $('#newCourseE').val(data.course_name);
+                $('#expandCourseE').val(data.expand_course);
+                $('#yearsE').val(data.years);
+                $('#semesterE').val(data.semester);
             }
-        },
-        error: function() {
-            alert('An error occurred while saving the changes.');
+            else{
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Something went Wrong please try Again',
+                    showConfirmButton: false, 
+                    timerProgressBar: true,
+                    customClass: {
+                        popup: 'swalContainer',
+                        title: 'swalTitleError'
+                    }
+                });
+            }
         }
     });
+    $('#updateCoursebtn').click(function(){
+        var departmentE = $('#departmentOptionsE').val() ;
+        var newCourseE = $('#newCourseE').val();
+        var expandCourseE = $('#expandCourseE').val();
+        var yearsE = $('#yearsE').val();
+        var semesterE = $('#semesterE').val();
+        console.log(departmentE,newCourseE,expandCourseE,yearsE,semesterE,id)
+            $.ajax({
+                url:'phpScripts/editCourse.php',
+                type:'POST',
+                data:{
+                    id:id,
+                    department : departmentE,
+                    newCourse : newCourseE,
+                    expandCourse : expandCourseE,
+                    years:yearsE,
+                    semester:semesterE
+                },
+                success:function(response){
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Course Updated Successfully',
+                        showConfirmButton: true,
+                        confirmButtonText : 'OK',
+                        confirmButtonColor: '#2C3E50',
+                        timerProgressBar: false,
+                        customClass: {
+                            popup: 'swalContainer',
+                            title: 'swalTitleSuccess'
+                        }
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    });
+                },
+                error: function(xhr, status, error) {
+                    Swal.fire({
+                       toast: true,
+                       position: 'top-end',
+                       icon: 'error',
+                       title: 'Server Busy Now Try Again Later',
+                       showConfirmButton: false, 
+                       timerProgressBar: true,
+                       customClass: {
+                           popup: 'swalContainer',
+                           title: 'swalTitleError'
+                       }
+                   });
+                   }
+            });
+    });
+
 }
 
-//delete Function
-
-function deleteRow(department) {
+function deleteRow(id) {
     $.ajax({
         url: 'phpScripts/deleteCourse.php',
         type: 'POST',
-        data: { department: department },
+        data: { id: id },
         success: function(response) {
             if (response.success) {
                 loadCourses();
@@ -210,7 +285,7 @@ function deleteRow(department) {
         }
     });
 }
- // load Data
-$(document).ready(function() {
+  // load Data
+ $(document).ready(function() {
     loadCourses();
-});
+ });

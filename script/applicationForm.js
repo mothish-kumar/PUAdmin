@@ -106,8 +106,8 @@ $(document).ready(function() {
                                 <td>${app.application_no}</td>
                                 <td>${app.course}</td>
                                 <td>${app.applicant_name}</td>
-                                <td><button class="btn btn-primary">Action</button></td>
-                                <td><button class="btn btn-secondary">Print</button></td>
+                                <td><button class="btn btn-primary" onclick = "applyEdit(mailId)">Action</button></td>
+                                <td><button class="btn btn-secondary" onclick = "applyPrint(mailId)">Print</button></td>
                             </tr>
                         `);
                     });
@@ -148,6 +148,16 @@ $(document).ready(function() {
 
     // Initial load
     loadApplications();
+
+    // application Print Function
+    function applyPrint(mailId){
+        // the pdf get Php Script .....
+    }
+    
+    // application edit function
+    function applyEdit(mailId){
+        //the application edit script goes here....
+    }
 });
 
 
